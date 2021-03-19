@@ -21,8 +21,13 @@
       <excludeFolder url="file://$MODULE_DIR$/material_dialogs/build" />
       <excludeFolder url="file://$MODULE_DIR$/material_dialogs/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/material_dialogs/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/no_wifi/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/no_wifi/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/no_wifi/build" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
   </component>
 </module>

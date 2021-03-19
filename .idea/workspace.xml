@@ -19,37 +19,64 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4928c0fb-235f-47c3-8bfe-e64cc05f1b49" name="Default Changelist" comment="up">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="4928c0fb-235f-47c3-8bfe-e64cc05f1b49" name="Default Changelist" comment="no wifi first">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/no_wifi/lib/widgets/wifi_animations.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Flutter_animations.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flutter_animations.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no_wifi/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/no_wifi/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no_wifi/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/no_wifi/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no_wifi/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/no_wifi/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1pw9OguWB1ywx9fLynPYkaSwagy" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/no_wifi/lib" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Flutter_animations\no_wifi\lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/no_wifi/lib/main.dart" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -82,8 +109,10 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/material_dialogs" />
     </ignored-roots>
@@ -95,10 +124,42 @@
       <screen x="0" y="0" width="2752" height="1112" />
     </state>
     <state x="574" y="422" key="#Notifications/0.0.2752.1112@0.0.2752.1112" timestamp="1616083480037" />
-    <state x="198" y="204" key="SettingsEditor" timestamp="1616086173340">
+    <state x="202" y="214" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616140911262">
       <screen x="0" y="0" width="2752" height="1112" />
     </state>
-    <state x="198" y="204" key="SettingsEditor/0.0.2752.1112@0.0.2752.1112" timestamp="1616086173340" />
+    <state x="202" y="214" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2752.1112@0.0.2752.1112" timestamp="1616140911262" />
+    <state x="477" y="349" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1616140909918">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state x="477" y="349" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.2752.1112@0.0.2752.1112" timestamp="1616140909918" />
+    <state x="94" y="100" width="1153" height="918" key="AVDManager" timestamp="1616143212962">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state x="94" y="100" width="1153" height="918" key="AVDManager/0.0.2752.1112@0.0.2752.1112" timestamp="1616143212962" />
+    <state x="451" y="314" key="FileChooserDialogImpl" timestamp="1616138698343">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state x="451" y="314" key="FileChooserDialogImpl/0.0.2752.1112@0.0.2752.1112" timestamp="1616138698343" />
+    <state width="1446" height="305" key="GridCell.Tab.0.bottom" timestamp="1616141473792">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state width="1446" height="305" key="GridCell.Tab.0.bottom/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473792" />
+    <state width="1446" height="305" key="GridCell.Tab.0.center" timestamp="1616141473792">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state width="1446" height="305" key="GridCell.Tab.0.center/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473792" />
+    <state width="1446" height="305" key="GridCell.Tab.0.left" timestamp="1616141473791">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state width="1446" height="305" key="GridCell.Tab.0.left/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473791" />
+    <state width="1446" height="305" key="GridCell.Tab.0.right" timestamp="1616141473792">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state width="1446" height="305" key="GridCell.Tab.0.right/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473792" />
+    <state x="198" y="204" key="SettingsEditor" timestamp="1616145696857">
+      <screen x="0" y="0" width="2752" height="1112" />
+    </state>
+    <state x="198" y="204" key="SettingsEditor/0.0.2752.1112@0.0.2752.1112" timestamp="1616145696857" />
     <state x="1735" y="459" key="Vcs.Push.Dialog.v2" timestamp="1616085126411">
       <screen x="0" y="0" width="2752" height="1112" />
     </state>
