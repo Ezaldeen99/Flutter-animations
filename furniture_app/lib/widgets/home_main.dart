@@ -76,19 +76,6 @@ class _HomeMainState extends State<HomeMain> {
                 fav: null,
               ),
             );
-
-          // case 2:
-          //   return _sliderPos();
-          // case 4:
-          //   return SeeAllText(
-          //       text: S.current.important_offers,
-          //       padding: const EdgeInsets.only(
-          //           left: horzPadding,
-          //           right: horzPadding,
-          //           top: verticalPadding),
-          //       callBack: () {
-          //         Get.to(ViewAll());
-          //       });
           default:
             return Container();
         }

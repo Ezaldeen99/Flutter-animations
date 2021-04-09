@@ -65,19 +65,12 @@ class HomeBoxes extends StatelessWidget {
                           ? LinearGradient(
                               colors: darkMode
                                   ? [
-                                      // Colors.white,
-                                      // Colors.white70,
-                                      // Colors.white54,
                                       Colors.white38,
                                       Colors.white24,
                                       Colors.white12,
                                       Colors.white10,
                                     ]
                                   : [
-                                      // Colors.white,
-                                      // Colors.white70,
-                                      // Colors.white54,
-                                      // Colors.black45,
                                       Colors.blue.withOpacity(0.3),
                                       Colors.blue.withOpacity(0.2),
                                       Colors.blue.withOpacity(0.1),

@@ -70,19 +70,6 @@ class _CacheImageWidgetState extends State<CacheImageWidget> {
                       fit: BoxFit.fitHeight,
                     ),
                   ),
-                  // child: Visibility(
-                  //   visible: widget.favOnPress != null,
-                  //   child: Container(
-                  //     margin: EdgeInsets.all(10),
-                  //     alignment: Alignment.topRight,
-                  //     child: OvalButton(
-                  //       size: 24,
-                  //       clicked: widget.favOnPress,
-                  //       color: widget.fav ? redGradient.colors[0] : mainColor3,
-                  //       image: Res.heart,
-                  //     ),
-                  //   ),
-                  // ),
                 ),
             placeholder: (context, url) => _container(
                 SizedBox(

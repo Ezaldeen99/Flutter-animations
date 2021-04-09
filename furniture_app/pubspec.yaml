@@ -57,12 +57,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/BagColor.png
     - assets/FireColor.png
-    - assets/Meter.png
     - assets/off_.png
     - assets/on_.png
-    - assets/on_2.png
     - assets/Stability.png
     - assets/Stopwatch.png
     - assets/tourch.png

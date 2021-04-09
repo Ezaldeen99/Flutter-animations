@@ -55,7 +55,7 @@ class _ItemViewState extends State<ItemView> {
       child: Container(
         height: 240,
         width: 170,
-        margin: EdgeInsets.only(right: 34),
+        margin: EdgeInsets.only(right: 18, left: 18),
         child: Stack(
           children: <Widget>[
             // The containers in the background
