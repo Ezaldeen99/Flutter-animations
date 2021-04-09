@@ -1,16 +1,11 @@
 # furniture_app
 
-A new Flutter application.
+A furniture app theme application.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<a href="https://github.com/Ezaldeen99/Flutter-animations/tree/main/furniture_app"><img align="left" hspace=68 src="https://github.com/Ezaldeen99/Flutter-animations/blob/main/assets/dark_theme.gif" width="200" /></a>
+<a href="https://github.com/Ezaldeen99/Flutter-animations/tree/main/furniture_app"><h3>Furniture app (Dark / White) Theme support</h3></a>
+<p>Draw curved vector animations to switch between white/dark themes. It also make use of a custom flash indicator for the selected category.</p>
+<a href="https://github.com/Ezaldeen99/Flutter-animations/tree/main/furniture_app">View Code</a>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

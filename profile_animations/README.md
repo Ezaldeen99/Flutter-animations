@@ -1,16 +1,11 @@
 # profile_animations
 
-A new Flutter application.
+A profile page Flutter animation.
 
-## Getting Started
+<a href="https://github.com/Ezaldeen99/flutter_circular_animator"><img align="left" hspace=68 src="https://github.com/Ezaldeen99/Flutter-animations/blob/main/assets/widget_animator.gif" width="200" /></a>
+<a href="https://github.com/Ezaldeen99/flutter_circular_animator"><h3>Flutter circular widget animator</h3></a>
+<p>Demonstrates how you can use custom painters in your Flutter app and how to tie multi custom animations controllers.</p>
+<a href="https://github.com/Ezaldeen99/flutter_circular_animator">View Code</a>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
