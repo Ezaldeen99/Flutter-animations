@@ -23,7 +23,7 @@ I am a mobile developer from Iraq, this repo is just to share source code for my
 
 <br />  
 
-<a href=""><img align="left" hspace=68 src="" width="237"/></a>
+<a href=""><img align="left" hspace=68 src="assets\onboarding_video.mp4" width="237"/></a>
 <a href=""><h3>Animated onBoarding</h3></a>
 <p>Use slider and lottie files to build an animated on boarding screens, it can be used to gain user attraction to your app when it launch at first. </p>
 <a href="">View Code</a>
