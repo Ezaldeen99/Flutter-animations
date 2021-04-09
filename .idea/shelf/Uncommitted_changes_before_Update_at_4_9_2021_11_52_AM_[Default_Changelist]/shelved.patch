@@ -1,0 +1,3527 @@
+Index: day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json	(date 1617958115009)
++++ day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json	(date 1617958115009)
+@@ -0,0 +1,122 @@
++{
++  "images" : [
++    {
++      "size" : "20x20",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-20x20@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "20x20",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-20x20@3x.png",
++      "scale" : "3x"
++    },
++    {
++      "size" : "29x29",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-29x29@1x.png",
++      "scale" : "1x"
++    },
++    {
++      "size" : "29x29",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-29x29@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "29x29",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-29x29@3x.png",
++      "scale" : "3x"
++    },
++    {
++      "size" : "40x40",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-40x40@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "40x40",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-40x40@3x.png",
++      "scale" : "3x"
++    },
++    {
++      "size" : "60x60",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-60x60@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "60x60",
++      "idiom" : "iphone",
++      "filename" : "Icon-App-60x60@3x.png",
++      "scale" : "3x"
++    },
++    {
++      "size" : "20x20",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-20x20@1x.png",
++      "scale" : "1x"
++    },
++    {
++      "size" : "20x20",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-20x20@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "29x29",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-29x29@1x.png",
++      "scale" : "1x"
++    },
++    {
++      "size" : "29x29",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-29x29@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "40x40",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-40x40@1x.png",
++      "scale" : "1x"
++    },
++    {
++      "size" : "40x40",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-40x40@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "76x76",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-76x76@1x.png",
++      "scale" : "1x"
++    },
++    {
++      "size" : "76x76",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-76x76@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "83.5x83.5",
++      "idiom" : "ipad",
++      "filename" : "Icon-App-83.5x83.5@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "size" : "1024x1024",
++      "idiom" : "ios-marketing",
++      "filename" : "Icon-App-1024x1024@1x.png",
++      "scale" : "1x"
++    }
++  ],
++  "info" : {
++    "version" : 1,
++    "author" : "xcode"
++  }
++}
+Index: day_night_animation/lib/app_bar.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/app_bar.dart	(date 1617958115964)
++++ day_night_animation/lib/app_bar.dart	(date 1617958115964)
+@@ -0,0 +1,68 @@
++import 'package:day_night_animation/widget_utils.dart';
++import 'package:flutter/material.dart';
++import 'package:flutter_svg/flutter_svg.dart';
++
++import 'input_page/input_page_styles.dart';
++
++class BmiAppBar extends StatelessWidget {
++  final bool isInputPage;
++  static const String wavingHandEmoji = "\uD83D\uDC4B";
++  static const String whiteSkinTone = "\uD83C\uDFFB";
++
++  const BmiAppBar({Key key, this.isInputPage = true}) : super(key: key);
++
++  @override
++  Widget build(BuildContext context) {
++    return Material(
++      elevation: 1.0,
++      child: Container(
++        height: appBarHeight(context),
++        color: Colors.white,
++        child: Padding(
++          padding: EdgeInsets.all(screenAwareSize(16.0, context)),
++          child: Row(
++            crossAxisAlignment: CrossAxisAlignment.end,
++            mainAxisAlignment: MainAxisAlignment.spaceBetween,
++            children: <Widget>[
++              _buildLabel(context),
++              _buildIcon(context),
++            ],
++          ),
++        ),
++      ),
++    );
++  }
++
++  Padding _buildIcon(BuildContext context) {
++    return Padding(
++      padding: EdgeInsets.only(bottom: screenAwareSize(11.0, context)),
++      child: SvgPicture.asset(
++        'images/user.svg',
++        height: screenAwareSize(20.0, context),
++        width: screenAwareSize(20.0, context),
++      ),
++    );
++  }
++
++  RichText _buildLabel(BuildContext context) {
++    return RichText(
++      text: TextSpan(
++        style: DefaultTextStyle.of(context).style.copyWith(fontSize: 34.0),
++        children: [
++          TextSpan(
++            text: isInputPage ? "Hi Johny " : "Your BMI",
++            style: TextStyle(fontWeight: FontWeight.bold),
++          ),
++          TextSpan(text: isInputPage ? getEmoji(context) : ""),
++        ],
++      ),
++    );
++  }
++
++  // https://github.com/flutter/flutter/issues/9652
++  String getEmoji(BuildContext context) {
++    return Theme.of(context).platform == TargetPlatform.iOS
++        ? wavingHandEmoji
++        : wavingHandEmoji + whiteSkinTone;
++  }
++}
+Index: day_night_animation/lib/input_page/transition_dot.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/input_page/transition_dot.dart	(date 1617958119399)
++++ day_night_animation/lib/input_page/transition_dot.dart	(date 1617958119399)
+@@ -0,0 +1,66 @@
++import 'dart:math' as math;
++
++import 'package:flutter/material.dart';
++
++import '../widget_utils.dart';
++
++class TransitionDot extends AnimatedWidget {
++  TransitionDot({Key key, Listenable animation, this.child})
++      : super(key: key, listenable: animation);
++  final Widget child;
++
++  Animation<Offset> get positionAnimation => Tween<Offset>(
++        begin: Offset(0, 10),
++        end: Offset(0.0, 0.0),
++      ).animate(
++        CurvedAnimation(
++          parent: super.listenable,
++          curve: Interval(0.15, 0.3),
++        ),
++      );
++
++  Animation<double> get sizeAnimation => LoopedSizeAnimation().animate(
++        CurvedAnimation(
++          parent: super.listenable,
++          curve: Interval(0.1, 1.0),
++        ),
++      );
++
++  @override
++  Widget build(BuildContext context) {
++    double scaledSize = screenAwareSize(sizeAnimation.value, context);
++    double deviceHeight = MediaQuery.of(context).size.height;
++    double deviceWidth = MediaQuery.of(context).size.width;
++    double height = math.min(scaledSize, deviceHeight);
++    double width = math.min(scaledSize, deviceWidth);
++
++    Widget dot = Container(
++      width: width,
++      height: height,
++      child: child,
++    );
++    return IgnorePointer(
++      child: Scaffold(
++        body: Center(
++            child: SlideTransition(
++          position: positionAnimation,
++          child: dot,
++        )),
++      ),
++    );
++  }
++}
++
++class LoopedSizeAnimation extends Animatable<double> {
++  final double defaultSize = 52.0;
++  final double expansionRange = 30.0;
++  final int numberOfCycles = 1;
++  final double fullExpansionEdge = 0.8;
++
++  @override
++  double transform(double t) {
++    double normalizedT = t / fullExpansionEdge;
++    return defaultSize +
++        math.sin(numberOfCycles * 2 * math.pi * normalizedT) * expansionRange;
++  }
++}
+Index: day_night_animation/lib/input_page/input_page_styles.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/input_page/input_page_styles.dart	(date 1617958115657)
++++ day_night_animation/lib/input_page/input_page_styles.dart	(date 1617958115657)
+@@ -0,0 +1,7 @@
++import 'package:flutter/material.dart';
++
++import '../widget_utils.dart';
++
++double appBarHeight(BuildContext context) {
++  return screenAwareSize(80.0, context) + MediaQuery.of(context).padding.top;
++}
+Index: day_night_animation/lib/input_page/input_page.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/input_page/input_page.dart	(date 1617958115327)
++++ day_night_animation/lib/input_page/input_page.dart	(date 1617958115327)
+@@ -0,0 +1,66 @@
++import 'package:day_night_animation/widget/puls.dart';
++import 'package:flutter/material.dart';
++
++import '../app_bar.dart';
++import 'input_page_styles.dart';
++
++class InputPage extends StatefulWidget {
++  @override
++  InputPageState createState() {
++    return new InputPageState();
++  }
++}
++
++class InputPageState extends State<InputPage> with TickerProviderStateMixin {
++  AnimationController _submitAnimationController;
++
++  @override
++  void initState() {
++    super.initState();
++    _submitAnimationController = AnimationController(
++      vsync: this,
++      duration: Duration(seconds: 2),
++    );
++    _submitAnimationController.addStatusListener((status) {
++      if (status == AnimationStatus.completed) {
++        _submitAnimationController.reset();
++      }
++    });
++    _submitAnimationController.forward();
++  }
++
++  @override
++  void dispose() {
++    _submitAnimationController.dispose();
++    super.dispose();
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    return Stack(
++      children: <Widget>[
++        Scaffold(
++          appBar: PreferredSize(
++            child: BmiAppBar(),
++            preferredSize: Size.fromHeight(appBarHeight(context)),
++          ),
++        ),
++        SpinKitPulse(
++          color: Colors.blue,
++          // itemBuilder: (context, index) {
++          //   return SvgPicture.asset(Res.pacman);
++          // },
++        ),
++        // TransitionDot(
++        //   animation: _submitAnimationController,
++        //   child: Container(
++        //     decoration: BoxDecoration(
++        //       shape: BoxShape.rectangle,
++        //       color: Theme.of(context).primaryColor,
++        //     ),
++        //   ),
++        // ),
++      ],
++    );
++  }
++}
+Index: my_porto/lib/ui/box_game.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- my_porto/lib/ui/box_game.dart	(date 1617958116069)
++++ my_porto/lib/ui/box_game.dart	(date 1617958116069)
+@@ -0,0 +1,72 @@
++import 'dart:math';
++import 'dart:ui';
++
++import 'package:flame/flame.dart';
++import 'package:flame/game.dart';
++import 'package:flame/gestures.dart';
++import 'package:flutter/gestures.dart';
++import 'package:my_porto/components/main_char.dart';
++
++class BoxGame extends Game with TapDetector {
++  Size screenSize;
++  bool hasWon = false;
++  double tileSize;
++  List<MainChar> mainChar = [];
++  Random rnd = Random();
++
++  BoxGame() {
++    initialize();
++  }
++
++  void initialize() async {
++    resize(await Flame.util.initialDimensions());
++
++    spawnFly();
++  }
++
++  void render(Canvas canvas) {
++    //black background
++    Rect bgRect = Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
++    Paint bgPaint = Paint();
++    bgPaint.color = Color(0xff000000);
++    canvas.drawRect(bgRect, bgPaint);
++
++    // draw a white box
++    mainChar.forEach((MainChar fly) => fly.render(canvas));
++  }
++
++  void update(double t) {
++    mainChar.forEach((MainChar fly) => fly.update(t));
++  }
++
++  void resize(Size size) {
++    screenSize = size;
++    tileSize = screenSize.width / 9;
++    super.resize(size);
++  }
++
++  void onTapDown(TapDownDetails d) {
++    print("Player tap down on ${d.globalPosition.dx} - ${d.globalPosition.dy}");
++    double screenCenterX = screenSize.width / 2;
++    double screenCenterY = screenSize.height / 2;
++    if (d.globalPosition.dx >= screenCenterX - 75 &&
++        d.globalPosition.dx <= screenCenterX + 75 &&
++        d.globalPosition.dy >= screenCenterY - 75 &&
++        d.globalPosition.dy <= screenCenterY + 75) {
++      hasWon = true;
++    }
++  }
++
++  @override
++  void onTapUp(TapUpDetails details) {
++    print(
++        "Player tap up on ${details.globalPosition.dx} - ${details.globalPosition.dy}");
++  }
++
++  void spawnFly() {
++    double x = rnd.nextDouble() * (screenSize.width - tileSize);
++    double y = rnd.nextDouble() * (screenSize.height - tileSize);
++
++    mainChar.add(MainChar(this, x, y));
++  }
++}
+Index: day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json	(date 1617958116005)
++++ day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json	(date 1617958116005)
+@@ -0,0 +1,23 @@
++{
++  "images" : [
++    {
++      "idiom" : "universal",
++      "filename" : "LaunchImage.png",
++      "scale" : "1x"
++    },
++    {
++      "idiom" : "universal",
++      "filename" : "LaunchImage@2x.png",
++      "scale" : "2x"
++    },
++    {
++      "idiom" : "universal",
++      "filename" : "LaunchImage@3x.png",
++      "scale" : "3x"
++    }
++  ],
++  "info" : {
++    "version" : 1,
++    "author" : "xcode"
++  }
++}
+Index: day_night_animation/android/app/src/debug/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/debug/AndroidManifest.xml	(date 1617958113250)
++++ day_night_animation/android/app/src/debug/AndroidManifest.xml	(date 1617958113250)
+@@ -0,0 +1,7 @@
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ezaldeen.day_night_animation">
++    <!-- Flutter needs it to communicate with the running application
++         to allow setting breakpoints, to provide hot reload, etc.
++    -->
++    <uses-permission android:name="android.permission.INTERNET"/>
++</manifest>
+Index: day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md	(date 1617958116317)
++++ day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md	(date 1617958116317)
+@@ -0,0 +1,5 @@
++# Launch Screen Assets
++
++You can customize the launch screen with your own desired assets by replacing the image files in this directory.
++
++You can also do it by opening your Flutter project's Xcode project with `open ios/Runner.xcworkspace`, selecting `Runner/Assets.xcassets` in the Project Navigator and dropping in the desired images.
+\ No newline at end of file
+Index: day_night_animation/lib/widget/day_night_widget.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/widget/day_night_widget.dart	(date 1617958116269)
++++ day_night_animation/lib/widget/day_night_widget.dart	(date 1617958116269)
+@@ -0,0 +1,26 @@
++import 'package:flutter/material.dart';
++
++class DayNightWidget extends StatefulWidget {
++  DayNightWidget({Key key}) : super(key: key);
++
++  @override
++  _DayNightWidgetState createState() => _DayNightWidgetState();
++}
++
++class _DayNightWidgetState extends State<DayNightWidget>
++    with SingleTickerProviderStateMixin {
++  AnimationController animationController;
++
++  @override
++  void initState() {
++    super.initState();
++    animationController = AnimationController(vsync: this);
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++      body: TweenAnimationBuilder<double>(child: Container()),
++    );
++  }
++}
+Index: day_night_animation/lib/styles.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/styles.dart	(date 1617958119485)
++++ day_night_animation/lib/styles.dart	(date 1617958119485)
+@@ -0,0 +1,3 @@
++import 'package:flutter/material.dart';
++
++const Color mainBlue = const Color.fromRGBO(77, 123, 243, 1.0);
+Index: day_night_animation/lib/fade_route.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/fade_route.dart	(date 1617958116412)
++++ day_night_animation/lib/fade_route.dart	(date 1617958116412)
+@@ -0,0 +1,15 @@
++import 'package:flutter/material.dart';
++
++class FadeRoute<T> extends MaterialPageRoute<T> {
++  FadeRoute({WidgetBuilder builder, RouteSettings settings})
++      : super(builder: builder, settings: settings);
++
++  @override
++  Duration get transitionDuration => const Duration(milliseconds: 500);
++
++  @override
++  Widget buildTransitions(BuildContext context, Animation<double> animation,
++      Animation<double> secondaryAnimation, Widget child) {
++    return FadeTransition(opacity: animation, child: child);
++  }
++}
+Index: day_night_animation/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme	(date 1617958116331)
++++ day_night_animation/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme	(date 1617958116331)
+@@ -0,0 +1,91 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<Scheme
++   LastUpgradeVersion = "1020"
++   version = "1.3">
++   <BuildAction
++      parallelizeBuildables = "YES"
++      buildImplicitDependencies = "YES">
++      <BuildActionEntries>
++         <BuildActionEntry
++            buildForTesting = "YES"
++            buildForRunning = "YES"
++            buildForProfiling = "YES"
++            buildForArchiving = "YES"
++            buildForAnalyzing = "YES">
++            <BuildableReference
++               BuildableIdentifier = "primary"
++               BlueprintIdentifier = "97C146ED1CF9000F007C117D"
++               BuildableName = "Runner.app"
++               BlueprintName = "Runner"
++               ReferencedContainer = "container:Runner.xcodeproj">
++            </BuildableReference>
++         </BuildActionEntry>
++      </BuildActionEntries>
++   </BuildAction>
++   <TestAction
++      buildConfiguration = "Debug"
++      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
++      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
++      shouldUseLaunchSchemeArgsEnv = "YES">
++      <Testables>
++      </Testables>
++      <MacroExpansion>
++         <BuildableReference
++            BuildableIdentifier = "primary"
++            BlueprintIdentifier = "97C146ED1CF9000F007C117D"
++            BuildableName = "Runner.app"
++            BlueprintName = "Runner"
++            ReferencedContainer = "container:Runner.xcodeproj">
++         </BuildableReference>
++      </MacroExpansion>
++      <AdditionalOptions>
++      </AdditionalOptions>
++   </TestAction>
++   <LaunchAction
++      buildConfiguration = "Debug"
++      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
++      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
++      launchStyle = "0"
++      useCustomWorkingDirectory = "NO"
++      ignoresPersistentStateOnLaunch = "NO"
++      debugDocumentVersioning = "YES"
++      debugServiceExtension = "internal"
++      allowLocationSimulation = "YES">
++      <BuildableProductRunnable
++         runnableDebuggingMode = "0">
++         <BuildableReference
++            BuildableIdentifier = "primary"
++            BlueprintIdentifier = "97C146ED1CF9000F007C117D"
++            BuildableName = "Runner.app"
++            BlueprintName = "Runner"
++            ReferencedContainer = "container:Runner.xcodeproj">
++         </BuildableReference>
++      </BuildableProductRunnable>
++      <AdditionalOptions>
++      </AdditionalOptions>
++   </LaunchAction>
++   <ProfileAction
++      buildConfiguration = "Profile"
++      shouldUseLaunchSchemeArgsEnv = "YES"
++      savedToolIdentifier = ""
++      useCustomWorkingDirectory = "NO"
++      debugDocumentVersioning = "YES">
++      <BuildableProductRunnable
++         runnableDebuggingMode = "0">
++         <BuildableReference
++            BuildableIdentifier = "primary"
++            BlueprintIdentifier = "97C146ED1CF9000F007C117D"
++            BuildableName = "Runner.app"
++            BlueprintName = "Runner"
++            ReferencedContainer = "container:Runner.xcodeproj">
++         </BuildableReference>
++      </BuildableProductRunnable>
++   </ProfileAction>
++   <AnalyzeAction
++      buildConfiguration = "Debug">
++   </AnalyzeAction>
++   <ArchiveAction
++      buildConfiguration = "Release"
++      revealArchiveInOrganizer = "YES">
++   </ArchiveAction>
++</Scheme>
+Index: day_night_animation/images/pacman.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/pacman.svg	(date 1617958116505)
++++ day_night_animation/images/pacman.svg	(date 1617958116505)
+@@ -0,0 +1,67 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<!-- Created with Inkscape (http://www.inkscape.org/) -->
++
++<svg
++   xmlns:dc="http://purl.org/dc/elements/1.1/"
++   xmlns:cc="http://creativecommons.org/ns#"
++   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
++   xmlns:svg="http://www.w3.org/2000/svg"
++   xmlns="http://www.w3.org/2000/svg"
++   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
++   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
++   version="1.1"
++   id="svg2"
++   xml:space="preserve"
++   width="29.333332"
++   height="33.333332"
++   viewBox="0 0 29.333332 33.333332"
++   sodipodi:docname="pacman.svg"
++   inkscape:version="0.92.2 5c3e80d, 2017-08-06"><metadata
++     id="metadata8"><rdf:RDF><cc:Work
++         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
++           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
++     id="defs6"><clipPath
++       clipPathUnits="userSpaceOnUse"
++       id="clipPath20"><path
++         d="m 12.11133,0.7773398 c 3.63465,0 6.89536,1.6010682 9.11531,4.1364062 1.86546,2.13048 -9.11531,4.920674 -9.11531,7.974924 0,3.14541 10.91227,6.01077 8.94632,8.16392 C 18.84288,23.47824 15.65482,25 12.11133,25 5.422427,25 0,19.57757 0,12.88867 0,6.199767 5.422427,0.7773398 12.11133,0.7773398 Z"
++         id="path18"
++         inkscape:connector-curvature="0"
++         style="clip-rule:evenodd" /></clipPath><clipPath
++       clipPathUnits="userSpaceOnUse"
++       id="clipPath26"><path
++         d="M -41,-34 H 334 V 633 H -41 Z"
++         id="path24"
++         inkscape:connector-curvature="0" /></clipPath></defs><sodipodi:namedview
++     pagecolor="#ffffff"
++     bordercolor="#666666"
++     borderopacity="1"
++     objecttolerance="10"
++     gridtolerance="10"
++     guidetolerance="10"
++     inkscape:pageopacity="0"
++     inkscape:pageshadow="2"
++     inkscape:window-width="1267"
++     inkscape:window-height="637"
++     id="namedview4"
++     showgrid="false"
++     inkscape:zoom="7.0800003"
++     inkscape:cx="-3.8113239"
++     inkscape:cy="26.579405"
++     inkscape:window-x="162"
++     inkscape:window-y="64"
++     inkscape:window-maximized="0"
++     inkscape:current-layer="g14" /><g
++     id="g10"
++     inkscape:groupmode="layer"
++     inkscape:label="oval6"
++     transform="matrix(1.3333333,0,0,-1.3333333,0,33.333333)"><g
++       id="g12" /><g
++       id="g14"><g
++         id="g16"
++         clip-path="url(#clipPath20)"><g
++           id="g22"
++           clip-path="url(#clipPath26)"><path
++             d="M -5,-4.22266 H 26.44 V 30 H -5 Z"
++             style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
++             id="path28"
++             inkscape:connector-curvature="0" /></g></g></g></g></svg>
+\ No newline at end of file
+Index: day_night_animation/lib/widget_utils.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/widget_utils.dart	(date 1617958116493)
++++ day_night_animation/lib/widget_utils.dart	(date 1617958116493)
+@@ -0,0 +1,9 @@
++import 'package:flutter/material.dart';
++
++const double baseHeight = 650.0;
++
++double screenAwareSize(double size, BuildContext context) {
++  double drawingHeight =
++      MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
++  return size * drawingHeight / baseHeight;
++}
+Index: day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist	(date 1617958116445)
++++ day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist	(date 1617958116445)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>IDEDidComputeMac32BitWarning</key>
++	<true/>
++</dict>
++</plist>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4928c0fb-235f-47c3-8bfe-e64cc05f1b49\" name=\"Default Changelist\" comment=\"no wifi first\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/no_wifi/lib/widgets/wifi_animations.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/Flutter_animations.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/Flutter_animations.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/no_wifi/lib/main.dart\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/no_wifi/lib/main.dart\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/no_wifi/pubspec.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/no_wifi/pubspec.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/no_wifi/pubspec.yaml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/no_wifi/pubspec.yaml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ChangesViewManager\">\r\n    <option name=\"groupingKeys\">\r\n      <option value=\"directory\" />\r\n    </option>\r\n  </component>\r\n  <component name=\"DefaultGradleProjectSettings\">\r\n    <option name=\"testRunner\" value=\"GRADLE\" />\r\n    <option name=\"delegatedBuild\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[]\" />\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1pw9OguWB1ywx9fLynPYkaSwagy\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"android.project.structure.last.selected\" value=\"SDK Location\" />\r\n    <property name=\"android.project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"android.sdk.path\" value=\"$USER_HOME$/AppData/Local/Android/Sdk\" />\r\n    <property name=\"dart.analysis.tool.window.visible\" value=\"false\" />\r\n    <property name=\"io.flutter.reload.alreadyRun\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/no_wifi/lib\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"flutter.settings\" />\r\n    <property name=\"show.migrate.to.gradle.popup\" value=\"false\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Flutter_animations\\no_wifi\\lib\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Unnamed\" type=\"FlutterRunConfigurationType\" factoryName=\"Flutter\" nameIsGenerated=\"true\">\r\n      <option name=\"filePath\" value=\"$PROJECT_DIR$/no_wifi/lib/main.dart\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4928c0fb-235f-47c3-8bfe-e64cc05f1b49\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1616083254691</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1616083254691</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"up\">\r\n      <created>1616085118062</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1616085118062</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$/material_dialogs\" />\r\n    </ignored-roots>\r\n    <MESSAGE value=\"up\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"up\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"574\" y=\"422\" key=\"#Notifications\" timestamp=\"1616083480037\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"574\" y=\"422\" key=\"#Notifications/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616083480037\" />\r\n    <state x=\"202\" y=\"214\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog\" timestamp=\"1616140911262\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"202\" y=\"214\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616140911262\" />\r\n    <state x=\"477\" y=\"349\" key=\"#com.intellij.ide.util.TreeFileChooserDialog\" timestamp=\"1616140909918\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"477\" y=\"349\" key=\"#com.intellij.ide.util.TreeFileChooserDialog/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616140909918\" />\r\n    <state x=\"94\" y=\"100\" width=\"1153\" height=\"918\" key=\"AVDManager\" timestamp=\"1616143212962\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"94\" y=\"100\" width=\"1153\" height=\"918\" key=\"AVDManager/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616143212962\" />\r\n    <state x=\"451\" y=\"314\" key=\"FileChooserDialogImpl\" timestamp=\"1616138698343\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"451\" y=\"314\" key=\"FileChooserDialogImpl/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616138698343\" />\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1616141473792\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.bottom/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616141473792\" />\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.center\" timestamp=\"1616141473792\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.center/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616141473792\" />\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.left\" timestamp=\"1616141473791\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.left/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616141473791\" />\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.right\" timestamp=\"1616141473792\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state width=\"1446\" height=\"305\" key=\"GridCell.Tab.0.right/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616141473792\" />\r\n    <state x=\"198\" y=\"204\" key=\"SettingsEditor\" timestamp=\"1616145696857\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"198\" y=\"204\" key=\"SettingsEditor/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616145696857\" />\r\n    <state x=\"1735\" y=\"459\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1616085126411\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"1735\" y=\"459\" key=\"Vcs.Push.Dialog.v2/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616085126411\" />\r\n    <state x=\"389\" y=\"348\" key=\"git4idea.merge.GitPullDialog\" timestamp=\"1616085095769\">\r\n      <screen x=\"0\" y=\"0\" width=\"2752\" height=\"1112\" />\r\n    </state>\r\n    <state x=\"389\" y=\"348\" key=\"git4idea.merge.GitPullDialog/0.0.2752.1112@0.0.2752.1112\" timestamp=\"1616085095769\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 636573933bfba61b5570bcf6c0a9fa9e3e1189e3)
++++ .idea/workspace.xml	(date 1617958318502)
+@@ -19,15 +19,123 @@
+     <select />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="4928c0fb-235f-47c3-8bfe-e64cc05f1b49" name="Default Changelist" comment="no wifi first">
+-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/no_wifi/lib/widgets/wifi_animations.dart" afterDir="false" />
++    <list default="true" id="4928c0fb-235f-47c3-8bfe-e64cc05f1b49" name="Default Changelist" comment="init furniture app animations">
++      <change afterPath="$PROJECT_DIR$/day_night_animation/.gitignore" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/.metadata" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/README.md" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/.gitignore" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/build.gradle" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/AndroidManifest.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/java/com/ezaldeen/day_night_animation/MainActivity.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/drawable-v21/launch_background.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/drawable/launch_background.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/values-night/styles.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/main/res/values/styles.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/app/src/profile/AndroidManifest.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/build.gradle" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/gradle.properties" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/android/settings.gradle" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Black.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Bold.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Heavy.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Light.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Medium.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Regular.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Semibold.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Thin.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/fonts/SF-Pro-Display-Ultralight.otf" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/gender_arrow.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/gender_female.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/gender_male.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/gender_other.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/pacman.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/person.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/user.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/images/weight_arrow.svg" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/.gitignore" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Flutter/Debug.xcconfig" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Flutter/Release.xcconfig" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/AppDelegate.swift" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Base.lproj/Main.storyboard" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Info.plist" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/ios/Runner/Runner-Bridging-Header.h" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/app_bar.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/fade_route.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/input_page/input_page.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/input_page/input_page_styles.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/input_page/transition_dot.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/main.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/styles.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/widget/day_night_widget.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/widget/path.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/widget/puls.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/lib/widget_utils.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/pubspec.lock" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/pubspec.yaml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/day_night_animation/test/widget_test.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/agile-fly-1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/agile-fly-2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/agile-fly-dead.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/backyard.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/drooler-fly-1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/drooler-fly-2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/drooler-fly-dead.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/fly1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/fly2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/house-fly-1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/house-fly-2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/house-fly-dead.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/hungry-fly-1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/hungry-fly-2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/hungry-fly-dead.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/macho-fly-1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/macho-fly-2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/assets/images/macho-fly-dead.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/lib/components/main_char.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/lib/ui/backyard.dart" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/my_porto/lib/ui/box_game.dart" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/Flutter_animations.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flutter_animations.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/no_wifi/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/no_wifi/lib/main.dart" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/no_wifi/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/no_wifi/pubspec.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/no_wifi/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/no_wifi/pubspec.yaml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/assets/on_boarding.gif" beforeDir="false" afterPath="$PROJECT_DIR$/assets/on_boarding.gif" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -43,7 +151,14 @@
+     <option name="testRunner" value="GRADLE" />
+     <option name="delegatedBuild" value="true" />
+   </component>
+-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
++  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R58M95CW3SK]" />
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="stateful_widget" />
++      </list>
++    </option>
++  </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+@@ -63,18 +178,22 @@
+     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+     <property name="dart.analysis.tool.window.visible" value="false" />
+     <property name="io.flutter.reload.alreadyRun" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/no_wifi/lib" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
+     <property name="settings.editor.selected.configurable" value="flutter.settings" />
+     <property name="show.migrate.to.gradle.popup" value="false" />
+   </component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="D:\Flutter_animations\assets" />
+       <recent name="D:\Flutter_animations\no_wifi\lib" />
+     </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="D:\Flutter_animations\assets" />
++    </key>
+   </component>
+   <component name="RunManager">
+-    <configuration name="Unnamed" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
+-      <option name="filePath" value="$PROJECT_DIR$/no_wifi/lib/main.dart" />
++    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
++      <option name="filePath" value="$PROJECT_DIR$/day_night_animation/lib/main.dart" />
+       <method v="2" />
+     </configuration>
+   </component>
+@@ -96,7 +215,42 @@
+       <option name="project" value="LOCAL" />
+       <updated>1616085118062</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="wifi animations">
++      <created>1616145912175</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1616145912176</updated>
++    </task>
++    <task id="LOCAL-00003" summary="init furniture app animations">
++      <created>1617908078924</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1617908078928</updated>
++    </task>
++    <task id="LOCAL-00004" summary="update README.md">
++      <created>1617952262438</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1617952262438</updated>
++    </task>
++    <task id="LOCAL-00005" summary="onboarding_animation">
++      <created>1617957217013</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1617957217013</updated>
++    </task>
++    <task id="LOCAL-00006" summary="on boarding">
++      <created>1617957986659</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1617957986659</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -117,53 +271,70 @@
+       <path value="$PROJECT_DIR$/material_dialogs" />
+     </ignored-roots>
+     <MESSAGE value="up" />
+-    <option name="LAST_COMMIT_MESSAGE" value="up" />
++    <MESSAGE value="wifi animations" />
++    <MESSAGE value="init furniture app animations" />
++    <MESSAGE value="update README.md" />
++    <MESSAGE value="onboarding_animation" />
++    <MESSAGE value="on boarding" />
++    <option name="LAST_COMMIT_MESSAGE" value="on boarding" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="574" y="422" key="#Notifications" timestamp="1616083480037">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+     <state x="574" y="422" key="#Notifications/0.0.2752.1112@0.0.2752.1112" timestamp="1616083480037" />
+-    <state x="202" y="214" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616140911262">
++    <state x="202" y="214" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616146619293">
++      <screen x="0" y="0" width="2752" height="1112" />
++    </state>
++    <state x="202" y="214" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2752.1112@0.0.2752.1112" timestamp="1616146619293" />
++    <state x="512" y="361" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1617958113065">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state x="202" y="214" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2752.1112@0.0.2752.1112" timestamp="1616140911262" />
+-    <state x="477" y="349" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1616140909918">
++    <state x="512" y="361" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2752.1112@0.0.2752.1112" timestamp="1617958113065" />
++    <state x="647" y="272" key="#com.intellij.ide.util.MemberChooser" timestamp="1616147151389">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state x="477" y="349" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.2752.1112@0.0.2752.1112" timestamp="1616140909918" />
+-    <state x="94" y="100" width="1153" height="918" key="AVDManager" timestamp="1616143212962">
++    <state x="647" y="272" key="#com.intellij.ide.util.MemberChooser/0.0.2752.1112@0.0.2752.1112" timestamp="1616147151389" />
++    <state x="477" y="349" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1616146617438">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state x="94" y="100" width="1153" height="918" key="AVDManager/0.0.2752.1112@0.0.2752.1112" timestamp="1616143212962" />
+-    <state x="451" y="314" key="FileChooserDialogImpl" timestamp="1616138698343">
++    <state x="477" y="349" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.2752.1112@0.0.2752.1112" timestamp="1616146617438" />
++    <state x="94" y="100" width="1153" height="918" key="AVDManager" timestamp="1616147513811">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state x="451" y="314" key="FileChooserDialogImpl/0.0.2752.1112@0.0.2752.1112" timestamp="1616138698343" />
+-    <state width="1446" height="305" key="GridCell.Tab.0.bottom" timestamp="1616141473792">
++    <state x="94" y="100" width="1153" height="918" key="AVDManager/0.0.2752.1112@0.0.2752.1112" timestamp="1616147513811" />
++    <state x="451" y="314" key="FileChooserDialogImpl" timestamp="1617953311285">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state width="1446" height="305" key="GridCell.Tab.0.bottom/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473792" />
+-    <state width="1446" height="305" key="GridCell.Tab.0.center" timestamp="1616141473792">
++    <state x="451" y="314" key="FileChooserDialogImpl/0.0.2752.1112@0.0.2752.1112" timestamp="1617953311285" />
++    <state width="1878" height="304" key="GridCell.Tab.0.bottom" timestamp="1617955374736">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state width="1446" height="305" key="GridCell.Tab.0.center/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473792" />
+-    <state width="1446" height="305" key="GridCell.Tab.0.left" timestamp="1616141473791">
++    <state width="1878" height="304" key="GridCell.Tab.0.bottom/0.0.2752.1112@0.0.2752.1112" timestamp="1617955374736" />
++    <state width="1878" height="304" key="GridCell.Tab.0.center" timestamp="1617955374736">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state width="1446" height="305" key="GridCell.Tab.0.left/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473791" />
+-    <state width="1446" height="305" key="GridCell.Tab.0.right" timestamp="1616141473792">
++    <state width="1878" height="304" key="GridCell.Tab.0.center/0.0.2752.1112@0.0.2752.1112" timestamp="1617955374736" />
++    <state width="1878" height="304" key="GridCell.Tab.0.left" timestamp="1617955374736">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state width="1446" height="305" key="GridCell.Tab.0.right/0.0.2752.1112@0.0.2752.1112" timestamp="1616141473792" />
+-    <state x="198" y="204" key="SettingsEditor" timestamp="1616145696857">
++    <state width="1878" height="304" key="GridCell.Tab.0.left/0.0.2752.1112@0.0.2752.1112" timestamp="1617955374736" />
++    <state width="1878" height="304" key="GridCell.Tab.0.right" timestamp="1617955374736">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state x="198" y="204" key="SettingsEditor/0.0.2752.1112@0.0.2752.1112" timestamp="1616145696857" />
+-    <state x="1735" y="459" key="Vcs.Push.Dialog.v2" timestamp="1616085126411">
++    <state width="1878" height="304" key="GridCell.Tab.0.right/0.0.2752.1112@0.0.2752.1112" timestamp="1617955374736" />
++    <state x="198" y="204" key="SettingsEditor" timestamp="1616147513426">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+-    <state x="1735" y="459" key="Vcs.Push.Dialog.v2/0.0.2752.1112@0.0.2752.1112" timestamp="1616085126411" />
++    <state x="198" y="204" key="SettingsEditor/0.0.2752.1112@0.0.2752.1112" timestamp="1616147513426" />
++    <state x="1027" y="428" key="Vcs.Push.Dialog.v2" timestamp="1617957989162">
++      <screen x="0" y="0" width="2752" height="1112" />
++    </state>
++    <state x="1027" y="428" key="Vcs.Push.Dialog.v2/0.0.2752.1112@0.0.2752.1112" timestamp="1617957989162" />
++    <state x="573" y="473" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617958318487">
++      <screen x="0" y="0" width="2752" height="1112" />
++    </state>
++    <state x="573" y="473" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2752.1112@0.0.2752.1112" timestamp="1617958318487" />
+     <state x="389" y="348" key="git4idea.merge.GitPullDialog" timestamp="1616085095769">
+       <screen x="0" y="0" width="2752" height="1112" />
+     </state>
+Index: day_night_animation/images/gender_other.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/gender_other.svg	(date 1617958116664)
++++ day_night_animation/images/gender_other.svg	(date 1617958116664)
+@@ -0,0 +1,11 @@
++<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" style="margin-left:auto;margin-right:auto"
++     display="block">
++    <defs>
++        <clipPath id="a">
++            <path d="M13.9 21c2.3-1.4 3.8-3.9 3.8-6.7 0-2.9-1.5-5.4-3.8-6.8-2.3 1.4-3.8 3.9-3.8 6.8 0 2.8 1.5 5.3 3.8 6.7zm-3.8 1c.8 0 1.6-.1 2.3-.3-2.2-1.7-3.7-4.4-3.7-7.4 0-3.1 1.5-5.8 3.7-7.4-.7-.3-1.5-.4-2.3-.4-4.2 0-7.6 3.5-7.6 7.8S5.9 22 10.1 22zm7.6 0c4.2 0 7.6-3.4 7.6-7.7 0-4.3-3.4-7.8-7.6-7.8-.8 0-1.6.1-2.3.4 2.2 1.6 3.7 4.3 3.7 7.4 0 3-1.5 5.7-3.7 7.4.7.2 1.5.3 2.3.3zm-7.6 9.9c-.4 0-.7-.3-.7-.7V28H6.3c-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7h3.1v-3.2c-4.6-.4-8.3-4.3-8.3-9.1 0-5.1 4-9.2 9-9.2 1.3 0 2.6.3 3.8.9 1.1-.6 2.4-.9 3.8-.9 2.4 0 4.6 1 6.2 2.5l5.2-5.3h-4.2c-.3 0-.7-.3-.7-.7 0-.4.4-.7.7-.7h5.9c.4 0 .7.3.7.7v6c0 .4-.3.7-.7.7-.4 0-.7-.3-.7-.7V3.3l-5.3 5.4c1.2 1.5 1.9 3.5 1.9 5.6 0 5-4.1 9.1-9 9.1-1.4 0-2.7-.3-3.8-.8-1 .4-2 .7-3.1.8v3.2h3.1c.4 0 .7.3.7.7 0 .4-.3.7-.7.7h-3.1v3.2c0 .4-.3.7-.7.7z"/>
++        </clipPath>
++    </defs>
++    <g clip-path="url(#a)">
++        <path d="M-6.4 39.5h45.5V-6.7H-6.4v46.2z" fill="#845cee"/>
++    </g>
++</svg>
+\ No newline at end of file
+Index: day_night_animation/images/user.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/user.svg	(date 1617958116634)
++++ day_night_animation/images/user.svg	(date 1617958116634)
+@@ -0,0 +1,9 @@
++<svg height="2500" viewBox=".29 .22 77.26 95.75" width="2014" xmlns="http://www.w3.org/2000/svg">
++    <g fill="none" fill-rule="evenodd">
++        <path d="m48.75 95.97-25.91-25.74 14.32-14.57 40.39 40.31z" fill="#02539a" />
++        <g fill="#45d1fd">
++            <path d="m22.52 70.25 25.68-25.68h28.87l-39.95 39.95z" fill-opacity=".85" />
++            <path d="m.29 47.85 14.58 14.57 62.2-62.2h-29.02z" />
++        </g>
++    </g>
++</svg>
+\ No newline at end of file
+Index: .idea/Flutter_animations.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"FacetManager\">\r\n    <facet type=\"android\" name=\"Android\">\r\n      <configuration>\r\n        <option name=\"GEN_FOLDER_RELATIVE_PATH_APT\" value=\"/../../Flutter_animations/gen\" />\r\n        <option name=\"GEN_FOLDER_RELATIVE_PATH_AIDL\" value=\"/../../Flutter_animations/gen\" />\r\n        <option name=\"MANIFEST_FILE_RELATIVE_PATH\" value=\"/../../Flutter_animations/AndroidManifest.xml\" />\r\n        <option name=\"RES_FOLDER_RELATIVE_PATH\" value=\"/../../Flutter_animations/res\" />\r\n        <option name=\"ASSETS_FOLDER_RELATIVE_PATH\" value=\"/../../Flutter_animations/assets\" />\r\n        <option name=\"LIBS_FOLDER_RELATIVE_PATH\" value=\"/../../Flutter_animations/libs\" />\r\n        <option name=\"PROGUARD_LOGS_FOLDER_RELATIVE_PATH\" value=\"/../../Flutter_animations/proguard_logs\" />\r\n      </configuration>\r\n    </facet>\r\n  </component>\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/gen\" isTestSource=\"false\" generated=\"true\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/material_dialogs/.pub\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/material_dialogs/build\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/material_dialogs/example/.pub\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/material_dialogs/example/build\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/no_wifi/.dart_tool\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/no_wifi/.pub\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/no_wifi/build\" />\r\n    </content>\r\n    <orderEntry type=\"jdk\" jdkName=\"Android API 23 Platform\" jdkType=\"Android SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"library\" name=\"Dart SDK\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Dart Packages\" level=\"project\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/Flutter_animations.iml	(revision 636573933bfba61b5570bcf6c0a9fa9e3e1189e3)
++++ .idea/Flutter_animations.iml	(date 1617958113520)
+@@ -17,10 +17,28 @@
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
++      <excludeFolder url="file://$MODULE_DIR$/animated_onboarding/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/animated_onboarding/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/animated_onboarding/build" />
++      <excludeFolder url="file://$MODULE_DIR$/day_night_animation/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/day_night_animation/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/day_night_animation/build" />
++      <excludeFolder url="file://$MODULE_DIR$/flutter_app/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/flutter_app/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/flutter_app/build" />
++      <excludeFolder url="file://$MODULE_DIR$/furniture_app/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/furniture_app/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/furniture_app/build" />
++      <excludeFolder url="file://$MODULE_DIR$/liquid_swip/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/liquid_swip/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/liquid_swip/build" />
+       <excludeFolder url="file://$MODULE_DIR$/material_dialogs/.pub" />
+       <excludeFolder url="file://$MODULE_DIR$/material_dialogs/build" />
+       <excludeFolder url="file://$MODULE_DIR$/material_dialogs/example/.pub" />
+       <excludeFolder url="file://$MODULE_DIR$/material_dialogs/example/build" />
++      <excludeFolder url="file://$MODULE_DIR$/my_porto/.dart_tool" />
++      <excludeFolder url="file://$MODULE_DIR$/my_porto/.pub" />
++      <excludeFolder url="file://$MODULE_DIR$/my_porto/build" />
+       <excludeFolder url="file://$MODULE_DIR$/no_wifi/.dart_tool" />
+       <excludeFolder url="file://$MODULE_DIR$/no_wifi/.pub" />
+       <excludeFolder url="file://$MODULE_DIR$/no_wifi/build" />
+Index: day_night_animation/images/person.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/person.svg	(date 1617958116581)
++++ day_night_animation/images/person.svg	(date 1617958116581)
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56pt" height="179pt" viewBox="0 0 56 179" version="1.1">
++<defs>
++<clipPath id="clip1">
++  <path d="M 10.105469 105.792969 L 15.433594 173.882812 C 15.617188 176.261719 17.636719 178.09375 20.023438 178.09375 L 35.273438 178.09375 C 37.660156 178.09375 39.683594 176.261719 39.867188 173.882812 L 45.195312 105.792969 L 51.074219 98.839844 C 53.828125 95.542969 55.480469 91.335938 55.480469 86.941406 L 55.480469 50.335938 C 55.480469 48.6875 54.746094 47.039062 53.460938 46.125 C 46.480469 40.269531 38.761719 36.605469 37.292969 35.691406 C 37.109375 35.691406 36.925781 35.507812 36.925781 35.324219 L 36.925781 30.566406 C 37.660156 29.101562 38.027344 27.636719 38.210938 26.175781 C 38.394531 26.355469 38.578125 26.355469 38.761719 26.355469 C 39.316406 26.355469 40.234375 25.625 41.152344 22.332031 C 42.070312 19.035156 41.519531 17.9375 40.785156 17.570312 C 43.355469 4.941406 37.476562 4.574219 37.476562 4.574219 C 37.476562 4.574219 36.558594 2.746094 34.171875 1.464844 C 32.699219 0.730469 30.863281 0 28.476562 0 C 28.109375 0 27.742188 0 27.375 0 C 26.453125 0 25.535156 0.183594 24.617188 0.550781 C 23.515625 0.914062 22.597656 1.464844 21.679688 2.011719 C 20.207031 2.929688 19.289062 3.660156 18.371094 4.757812 C 16.902344 6.222656 15.617188 8.054688 15.066406 10.617188 C 14.511719 12.628906 14.511719 14.824219 15.433594 17.023438 C 15.433594 17.023438 15.25 17.023438 15.25 17.023438 C 14.144531 17.023438 13.226562 17.753906 14.328125 21.78125 C 15.25 24.894531 15.984375 25.808594 16.71875 25.808594 C 16.902344 27.636719 17.636719 29.46875 18.554688 31.300781 L 18.554688 35.324219 C 18.554688 35.507812 18.371094 35.691406 18.1875 35.691406 C 16.71875 36.425781 9.003906 40.269531 2.019531 46.125 C 0.734375 47.222656 0 48.6875 0 50.335938 L 0 87.125 C 0 91.515625 1.46875 95.542969 4.226562 99.023438 Z M 10.105469 105.792969 "/>
++</clipPath>
++</defs>
++<g id="surface1">
++<g clip-path="url(#clip1)" clip-rule="nonzero">
++<rect x="0" y="0" width="56" height="179" style="fill:rgb(84.706116%,85.098267%,87.451172%);fill-opacity:0.2309;stroke:none;"/>
++</g>
++</g>
++</svg>
+Index: day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings	(date 1617958116573)
++++ day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings	(date 1617958116573)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>PreviewsEnabled</key>
++	<false/>
++</dict>
++</plist>
+Index: day_night_animation/images/gender_arrow.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/gender_arrow.svg	(date 1617958116843)
++++ day_night_animation/images/gender_arrow.svg	(date 1617958116843)
+@@ -0,0 +1,11 @@
++<svg width="55" height="55" xmlns="http://www.w3.org/2000/svg" style="margin-left:auto;margin-right:auto"
++     display="block">
++    <defs>
++        <clipPath id="a">
++            <path d="M11.1 55c-2.5 0-4.9-.9-6.8-2.7-4-3.7-4.2-10-.5-14 .4-.4.7-.7 1.1-1v-.1L53.8 1.3 19.3 50.7v-.1c-.3.5-.6.8-1 1.2-1.9 2.1-4.6 3.2-7.2 3.2z"/>
++        </clipPath>
++    </defs>
++    <g clip-path="url(#a)">
++        <path d="M45.1-17.1L70.8 6.7 11.9 69.9l-25.6-24z" fill="#4d7bf3"/>
++    </g>
++</svg>
+\ No newline at end of file
+Index: day_night_animation/images/gender_male.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/gender_male.svg	(date 1617958116790)
++++ day_night_animation/images/gender_male.svg	(date 1617958116790)
+@@ -0,0 +1,5 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14">
++    <path fill="#0089FF"
++          d="M123.353313,81.2210967 C123.352384,81.2192387 123.352384,81.2173808 123.351455,81.2157551 C123.316154,81.1300569 123.247642,81.0615448 123.161944,81.0262436 C123.160086,81.0255469 123.158228,81.0253146 123.156602,81.0246179 C123.117121,81.0092898 123.074388,81 123.029565,81 L119.282301,81 C119.090002,81 118.933934,81.1560683 118.933934,81.3483666 C118.933934,81.540665 119.090002,81.6967333 119.282301,81.6967333 L122.188608,81.6967333 L118.956694,84.9291112 C118.12851,84.3229533 117.111048,83.9601875 116.008351,83.9601875 C113.2465,83.9601875 111,86.2069201 111,88.9683063 C111,91.7296925 113.246733,93.9764251 116.008351,93.9764251 C118.76997,93.9764251 121.01647,91.7296925 121.01647,88.9683063 C121.01647,87.5606728 120.430517,86.2891346 119.49225,85.3782719 L122.680966,82.1893237 L122.680966,85.096095 C122.680966,85.2883933 122.837034,85.4444616 123.029332,85.4444616 C123.221631,85.4444616 123.377699,85.2883933 123.377699,85.096095 L123.377699,81.3481344 C123.377931,81.303079 123.368874,81.2605782 123.353313,81.2210967 Z M120.319737,88.968074 C120.319737,91.345328 118.385605,93.2794596 116.008351,93.2794596 C113.630865,93.2794596 111.696733,91.345328 111.696733,88.968074 C111.696733,86.5908201 113.630865,84.6566885 116.008351,84.6566885 C118.385605,84.6566885 120.319737,86.5908201 120.319737,88.968074 Z"
++          transform="translate(-111 -80.837)"/>
++</svg>
+Index: day_night_animation/images/weight_arrow.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/weight_arrow.svg	(date 1617958116778)
++++ day_night_animation/images/weight_arrow.svg	(date 1617958116778)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<svg xmlns="http://www.w3.org/2000/svg" width="18pt" height="9pt" viewBox="0 0 18 9" version="1.1">
++    <defs>
++        <clipPath id="clip1">
++            <path d="M 0.128906 8.726562 L 6.863281 1.167969 C 7.964844 -0.0703125 9.859375 -0.179688 11.097656 0.921875 C 11.195312 1.007812 11.285156 1.101562 11.371094 1.199219 L 17.875 8.726562 Z M 0.128906 8.726562 "/>
++        </clipPath>
++    </defs>
++    <g id="surface1">
++        <g clip-path="url(#clip1)" clip-rule="evenodd">
++            <rect x="0" y="0" width="18" height="9"
++                  style="fill:rgb(30.195618%,48.234558%,95.294189%);fill-opacity:1;stroke:none;"/>
++        </g>
++    </g>
++</svg>
+Index: my_porto/lib/ui/backyard.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- my_porto/lib/ui/backyard.dart	(date 1617958116728)
++++ my_porto/lib/ui/backyard.dart	(date 1617958116728)
+@@ -0,0 +1,28 @@
++import 'dart:ui';
++
++import 'package:flame/sprite.dart';
++
++import '../res.dart';
++import 'box_game.dart';
++
++class Backyard {
++  final BoxGame game;
++  Sprite bgSprite;
++  Rect bgRect;
++
++  Backyard(this.game) {
++    bgSprite = Sprite(Res.backyard);
++    bgRect = Rect.fromLTWH(
++      0,
++      game.screenSize.height - (game.tileSize * 23),
++      game.tileSize * 9,
++      game.tileSize * 23,
++    );
++  }
++
++  void render(Canvas c) {
++    bgSprite.renderRect(c, bgRect);
++  }
++
++  void update(double t) {}
++}
+Index: day_night_animation/images/gender_female.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/images/gender_female.svg	(date 1617958116940)
++++ day_night_animation/images/gender_female.svg	(date 1617958116940)
+@@ -0,0 +1,5 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
++    <path fill="#F94094"
++          d="M57.7009323,78.1077689 C54.8387714,78.1077689 52.5104826,80.4362984 52.5104826,83.2982186 C52.5104826,86.0385854 54.6464523,88.2838328 57.3398826,88.4703751 L57.3398826,91.7617037 L55.2414621,91.7617037 C55.0421627,91.7617037 54.8804124,91.9234539 54.8804124,92.1227533 C54.8804124,92.3220527 55.0421627,92.483803 55.2414621,92.483803 L57.3398826,92.483803 L57.3398826,94.5076066 C57.3398826,94.706906 57.5016329,94.8686562 57.7009323,94.8686562 C57.9002317,94.8686562 58.0619819,94.706906 58.0619819,94.5076066 L58.0619819,92.483803 L60.2499428,92.483803 C60.4492422,92.483803 60.6109924,92.3220527 60.6109924,92.1227533 C60.6109924,91.9234539 60.4492422,91.7617037 60.2499428,91.7617037 L58.0619819,91.7617037 L58.0619819,88.4703751 C60.755653,88.2838328 62.8916227,86.0383447 62.8916227,83.2982186 C62.8916227,80.4360577 60.5630932,78.1077689 57.7009323,78.1077689 Z M57.7009323,87.7668097 C55.2371295,87.7668097 53.2325819,85.7622621 53.2325819,83.2984593 C53.2325819,80.8346565 55.2371295,78.8301089 57.7009323,78.8301089 C60.1649757,78.8301089 62.1695234,80.8346565 62.1695234,83.2984593 C62.1695234,85.7622621 60.1649757,87.7668097 57.7009323,87.7668097 Z"
++          transform="rotate(-48 -55.835 103.22)"/>
++</svg>
+Index: day_night_animation/android/app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/main/AndroidManifest.xml	(date 1617958113209)
++++ day_night_animation/android/app/src/main/AndroidManifest.xml	(date 1617958113209)
+@@ -0,0 +1,41 @@
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ezaldeen.day_night_animation">
++   <application
++        android:label="day_night_animation"
++        android:icon="@mipmap/ic_launcher">
++        <activity
++            android:name=".MainActivity"
++            android:launchMode="singleTop"
++            android:theme="@style/LaunchTheme"
++            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
++            android:hardwareAccelerated="true"
++            android:windowSoftInputMode="adjustResize">
++            <!-- Specifies an Android theme to apply to this Activity as soon as
++                 the Android process has started. This theme is visible to the user
++                 while the Flutter UI initializes. After that, this theme continues
++                 to determine the Window background behind the Flutter UI. -->
++            <meta-data
++              android:name="io.flutter.embedding.android.NormalTheme"
++              android:resource="@style/NormalTheme"
++              />
++            <!-- Displays an Android View that continues showing the launch screen
++                 Drawable until Flutter paints its first frame, then this splash
++                 screen fades out. A splash screen is useful to avoid any visual
++                 gap between the end of Android's launch screen and the painting of
++                 Flutter's first frame. -->
++            <meta-data
++              android:name="io.flutter.embedding.android.SplashScreenDrawable"
++              android:resource="@drawable/launch_background"
++              />
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN"/>
++                <category android:name="android.intent.category.LAUNCHER"/>
++            </intent-filter>
++        </activity>
++        <!-- Don't delete the meta-data below.
++             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
++        <meta-data
++            android:name="flutterEmbedding"
++            android:value="2" />
++    </application>
++</manifest>
+Index: day_night_animation/android/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/.gitignore	(date 1617958116927)
++++ day_night_animation/android/.gitignore	(date 1617958116927)
+@@ -0,0 +1,11 @@
++gradle-wrapper.jar
++/.gradle
++/captures/
++/gradlew
++/gradlew.bat
++/local.properties
++GeneratedPluginRegistrant.java
++
++# Remember to never publicly share your keystore.
++# See https://flutter.dev/docs/deployment/android#reference-the-keystore-from-the-app
++key.properties
+Index: day_night_animation/test/widget_test.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/test/widget_test.dart	(date 1617958116859)
++++ day_night_animation/test/widget_test.dart	(date 1617958116859)
+@@ -0,0 +1,30 @@
++// This is a basic Flutter widget test.
++//
++// To perform an interaction with a widget in your test, use the WidgetTester
++// utility that Flutter provides. For example, you can send tap and scroll
++// gestures. You can also use WidgetTester to find child widgets in the widget
++// tree, read text, and verify that the values of widget properties are correct.
++
++import 'package:flutter/material.dart';
++import 'package:flutter_test/flutter_test.dart';
++
++import 'package:day_night_animation/main.dart';
++
++void main() {
++  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
++    // Build our app and trigger a frame.
++    await tester.pumpWidget(MyApp());
++
++    // Verify that our counter starts at 0.
++    expect(find.text('0'), findsOneWidget);
++    expect(find.text('1'), findsNothing);
++
++    // Tap the '+' icon and trigger a frame.
++    await tester.tap(find.byIcon(Icons.add));
++    await tester.pump();
++
++    // Verify that our counter has incremented.
++    expect(find.text('0'), findsNothing);
++    expect(find.text('1'), findsOneWidget);
++  });
++}
+Index: day_night_animation/android/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/build.gradle	(date 1617958117115)
++++ day_night_animation/android/app/build.gradle	(date 1617958117115)
+@@ -0,0 +1,50 @@
++def localProperties = new Properties()
++def localPropertiesFile = rootProject.file('local.properties')
++if (localPropertiesFile.exists()) {
++    localPropertiesFile.withReader('UTF-8') { reader ->
++        localProperties.load(reader)
++    }
++}
++
++def flutterRoot = localProperties.getProperty('flutter.sdk')
++if (flutterRoot == null) {
++    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
++}
++
++def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
++if (flutterVersionCode == null) {
++    flutterVersionCode = '1'
++}
++
++def flutterVersionName = localProperties.getProperty('flutter.versionName')
++if (flutterVersionName == null) {
++    flutterVersionName = '1.0'
++}
++
++apply plugin: 'com.android.application'
++apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
++
++android {
++    compileSdkVersion 30
++
++    defaultConfig {
++        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
++        applicationId "com.ezaldeen.day_night_animation"
++        minSdkVersion 16
++        targetSdkVersion 30
++        versionCode flutterVersionCode.toInteger()
++        versionName flutterVersionName
++    }
++
++    buildTypes {
++        release {
++            // TODO: Add your own signing config for the release build.
++            // Signing with the debug keys for now, so `flutter run --release` works.
++            signingConfig signingConfigs.debug
++        }
++    }
++}
++
++flutter {
++    source '../..'
++}
+Index: day_night_animation/android/app/src/main/java/com/ezaldeen/day_night_animation/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/main/java/com/ezaldeen/day_night_animation/MainActivity.java	(date 1617958113631)
++++ day_night_animation/android/app/src/main/java/com/ezaldeen/day_night_animation/MainActivity.java	(date 1617958113631)
+@@ -0,0 +1,6 @@
++package com.ezaldeen.day_night_animation;
++
++import io.flutter.embedding.android.FlutterActivity;
++
++public class MainActivity extends FlutterActivity {
++}
+Index: day_night_animation/android/settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/settings.gradle	(date 1617958117098)
++++ day_night_animation/android/settings.gradle	(date 1617958117098)
+@@ -0,0 +1,11 @@
++include ':app'
++
++def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
++def properties = new Properties()
++
++assert localPropertiesFile.exists()
++localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
++
++def flutterSdkPath = properties.getProperty("flutter.sdk")
++assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
++apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+Index: day_night_animation/android/gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- day_night_animation/android/gradle.properties	(date 1617958117050)
++++ day_night_animation/android/gradle.properties	(date 1617958117050)
+@@ -0,0 +1,3 @@
++org.gradle.jvmargs=-Xmx1536M
++android.useAndroidX=true
++android.enableJetifier=true
+Index: day_night_animation/android/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/build.gradle	(date 1617958117021)
++++ day_night_animation/android/build.gradle	(date 1617958117021)
+@@ -0,0 +1,29 @@
++buildscript {
++    repositories {
++        google()
++        jcenter()
++    }
++
++    dependencies {
++        classpath 'com.android.tools.build:gradle:4.1.0'
++    }
++}
++
++allprojects {
++    repositories {
++        google()
++        jcenter()
++    }
++}
++
++rootProject.buildDir = '../build'
++subprojects {
++    project.buildDir = "${rootProject.buildDir}/${project.name}"
++}
++subprojects {
++    project.evaluationDependsOn(':app')
++}
++
++task clean(type: Delete) {
++    delete rootProject.buildDir
++}
+Index: day_night_animation/pubspec.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/pubspec.yaml	(date 1617958113645)
++++ day_night_animation/pubspec.yaml	(date 1617958113645)
+@@ -0,0 +1,71 @@
++name: day_night_animation
++description: A new Flutter application.
++
++# The following line prevents the package from being accidentally published to
++# pub.dev using `pub publish`. This is preferred for private packages.
++publish_to: 'none' # Remove this line if you wish to publish to pub.dev
++
++# The following defines the version and build number for your application.
++# A version number is three numbers separated by dots, like 1.2.43
++# followed by an optional build number separated by a +.
++# Both the version and the builder number may be overridden in flutter
++# build by specifying --build-name and --build-number, respectively.
++# In Android, build-name is used as versionName while build-number used as versionCode.
++# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
++# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
++# Read more about iOS versioning at
++# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
++version: 1.0.0+1
++
++environment:
++  sdk: ">=2.7.0 <3.0.0"
++
++dependencies:
++  flutter:
++    sdk: flutter
++  flutter_svg: ^0.19.3
++
++  # The following adds the Cupertino Icons font to your application.
++  # Use with the CupertinoIcons class for iOS style icons.
++  cupertino_icons: ^1.0.2
++
++dev_dependencies:
++  flutter_test:
++    sdk: flutter
++
++# For information on the generic Dart part of this file, see the
++# following page: https://dart.dev/tools/pub/pubspec
++
++# The following section is specific to Flutter.
++flutter:
++  uses-material-design: true
++  assets:
++    - images/gender_arrow.svg
++    - images/gender_female.svg
++    - images/gender_male.svg
++    - images/gender_other.svg
++    - images/pacman.svg
++    - images/person.svg
++    - images/user.svg
++    - images/weight_arrow.svg
++  fonts:
++    - family: SF Pro Display
++      fonts:
++        - asset: fonts/SF-Pro-Display-Ultralight.otf
++          weight: 100
++        - asset: fonts/SF-Pro-Display-Thin.otf
++          weight: 200
++        - asset: fonts/SF-Pro-Display-Light.otf
++          weight: 300
++        - asset: fonts/SF-Pro-Display-Regular.otf
++          weight: 400
++        - asset: fonts/SF-Pro-Display-Medium.otf
++          weight: 500
++        - asset: fonts/SF-Pro-Display-Semibold.otf
++          weight: 600
++        - asset: fonts/SF-Pro-Display-Bold.otf
++          weight: 700
++        - asset: fonts/SF-Pro-Display-Heavy.otf
++          weight: 800
++        - asset: fonts/SF-Pro-Display-Black.otf
++          weight: 900
+Index: day_night_animation/lib/widget/puls.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/widget/puls.dart	(date 1617958113561)
++++ day_night_animation/lib/widget/puls.dart	(date 1617958113561)
+@@ -0,0 +1,92 @@
++import 'package:flutter/material.dart';
++import 'package:flutter_svg/svg.dart';
++
++import '../res.dart';
++
++class SpinKitPulse extends StatefulWidget {
++  const SpinKitPulse({
++    Key key,
++    this.color,
++    this.size = 2000.0,
++    this.itemBuilder,
++    this.duration = const Duration(seconds: 1),
++    this.controller,
++  })  : assert(
++            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
++                !(itemBuilder == null && color == null),
++            'You should specify either a itemBuilder or a color'),
++        super(key: key);
++
++  final Color color;
++  final double size;
++  final IndexedWidgetBuilder itemBuilder;
++  final Duration duration;
++  final AnimationController controller;
++
++  @override
++  _SpinKitPulseState createState() => _SpinKitPulseState();
++}
++
++class _SpinKitPulseState extends State<SpinKitPulse>
++    with TickerProviderStateMixin {
++  AnimationController _controller;
++  AnimationController _controller_1;
++  Animation<double> _animation;
++  Animation<double> positionAnimation;
++  bool animationStatus = true;
++  bool loaded = false;
++
++  @override
++  void initState() {
++    super.initState();
++
++    _controller = (widget.controller ??
++        AnimationController(vsync: this, duration: widget.duration))
++      ..addListener(() => setState(() {}));
++    _animation = CurveTween(curve: Curves.easeInOut).animate(_controller);
++
++    _controller_1 = AnimationController(
++      duration: const Duration(seconds: 2),
++      vsync: this,
++    )
++      ..repeat()
++      ..addStatusListener((status) {
++        if (status == AnimationStatus.completed) {
++          setState(() => animationStatus = false);
++          _controller.repeat();
++        }
++      });
++
++    positionAnimation = Tween<double>(
++      begin: 0.1,
++      end: 0.5,
++    ).animate(_controller_1);
++  }
++
++  @override
++  void dispose() {
++    _controller.dispose();
++    super.dispose();
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    return Transform.scale(
++      scale: positionAnimation.value,
++      child: Opacity(
++        opacity: 1.0 - _animation.value,
++        child: Transform.scale(
++          scale: animationStatus ? 0.1 : _animation.value,
++          child: SizedBox.fromSize(
++            size: Size.square(widget.size),
++            child: _itemBuilder(0),
++          ),
++        ),
++      ),
++    );
++  }
++
++  Widget _itemBuilder(index) => widget.itemBuilder != null
++      ? widget.itemBuilder(context, index)
++      : SvgPicture.asset(Res.user);
++}
+Index: day_night_animation/android/app/src/main/res/values-night/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/main/res/values-night/styles.xml	(date 1617958113531)
++++ day_night_animation/android/app/src/main/res/values-night/styles.xml	(date 1617958113531)
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <!-- Theme applied to the Android Window while the process is starting when the OS's Dark Mode setting is on -->
++    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
++        <!-- Show a splash screen on the activity. Automatically removed when
++             Flutter draws its first frame -->
++        <item name="android:windowBackground">@drawable/launch_background</item>
++    </style>
++    <!-- Theme applied to the Android Window as soon as the process has started.
++         This theme determines the color of the Android Window while your
++         Flutter UI initializes, as well as behind your Flutter UI while its
++         running.
++         
++         This Theme is only used starting with V2 of Flutter's Android embedding. -->
++    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
++        <item name="android:windowBackground">?android:colorBackground</item>
++    </style>
++</resources>
+Index: day_night_animation/android/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- day_night_animation/android/gradle/wrapper/gradle-wrapper.properties	(date 1617958113194)
++++ day_night_animation/android/gradle/wrapper/gradle-wrapper.properties	(date 1617958113194)
+@@ -0,0 +1,6 @@
++#Fri Jun 23 08:50:38 CEST 2017
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.7-all.zip
+Index: day_night_animation/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/.gitignore	(date 1617958113763)
++++ day_night_animation/.gitignore	(date 1617958113763)
+@@ -0,0 +1,46 @@
++# Miscellaneous
++*.class
++*.log
++*.pyc
++*.swp
++.DS_Store
++.atom/
++.buildlog/
++.history
++.svn/
++
++# IntelliJ related
++*.iml
++*.ipr
++*.iws
++.idea/
++
++# The .vscode folder contains launch configuration and tasks you configure in
++# VS Code which you may wish to be included in version control, so this line
++# is commented out by default.
++#.vscode/
++
++# Flutter/Dart/Pub related
++**/doc/api/
++**/ios/Flutter/.last_build_id
++.dart_tool/
++.flutter-plugins
++.flutter-plugins-dependencies
++.packages
++.pub-cache/
++.pub/
++/build/
++
++# Web related
++lib/generated_plugin_registrant.dart
++
++# Symbolication related
++app.*.symbols
++
++# Obfuscation related
++app.*.map.json
++
++# Android Studio will place build artifacts here
++/android/app/debug
++/android/app/profile
++/android/app/release
+Index: day_night_animation/README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/README.md	(date 1617958113750)
++++ day_night_animation/README.md	(date 1617958113750)
+@@ -0,0 +1,16 @@
++# day_night_animation
++
++A new Flutter application.
++
++## Getting Started
++
++This project is a starting point for a Flutter application.
++
++A few resources to get you started if this is your first Flutter project:
++
++- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
++- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
++
++For help getting started with Flutter, view our
++[online documentation](https://flutter.dev/docs), which offers tutorials,
++samples, guidance on mobile development, and a full API reference.
+Index: day_night_animation/.metadata
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/.metadata	(date 1617958113712)
++++ day_night_animation/.metadata	(date 1617958113712)
+@@ -0,0 +1,10 @@
++# This file tracks properties of this Flutter project.
++# Used by Flutter tool to assess capabilities and perform upgrades etc.
++#
++# This file should be version controlled and should not be manually edited.
++
++version:
++  revision: c5a4b4029c0798f37c4a39b479d7cb75daa7b05c
++  channel: stable
++
++project_type: app
+Index: day_night_animation/android/app/src/main/res/drawable/launch_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/main/res/drawable/launch_background.xml	(date 1617958113403)
++++ day_night_animation/android/app/src/main/res/drawable/launch_background.xml	(date 1617958113403)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Modify this file to customize your launch splash screen -->
++<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
++    <item android:drawable="@android:color/white" />
++
++    <!-- You can insert your own image assets here -->
++    <!-- <item>
++        <bitmap
++            android:gravity="center"
++            android:src="@mipmap/launch_image" />
++    </item> -->
++</layer-list>
+Index: day_night_animation/android/app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/main/res/values/styles.xml	(date 1617958113348)
++++ day_night_animation/android/app/src/main/res/values/styles.xml	(date 1617958113348)
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <!-- Theme applied to the Android Window while the process is starting when the OS's Dark Mode setting is off -->
++    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
++        <!-- Show a splash screen on the activity. Automatically removed when
++             Flutter draws its first frame -->
++        <item name="android:windowBackground">@drawable/launch_background</item>
++    </style>
++    <!-- Theme applied to the Android Window as soon as the process has started.
++         This theme determines the color of the Android Window while your
++         Flutter UI initializes, as well as behind your Flutter UI while its
++         running.
++         
++         This Theme is only used starting with V2 of Flutter's Android embedding. -->
++    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
++        <item name="android:windowBackground">?android:colorBackground</item>
++    </style>
++</resources>
+Index: day_night_animation/android/app/src/profile/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/profile/AndroidManifest.xml	(date 1617958113283)
++++ day_night_animation/android/app/src/profile/AndroidManifest.xml	(date 1617958113283)
+@@ -0,0 +1,7 @@
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.ezaldeen.day_night_animation">
++    <!-- Flutter needs it to communicate with the running application
++         to allow setting breakpoints, to provide hot reload, etc.
++    -->
++    <uses-permission android:name="android.permission.INTERNET"/>
++</manifest>
+Index: my_porto/lib/components/main_char.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- my_porto/lib/components/main_char.dart	(date 1617958113337)
++++ my_porto/lib/components/main_char.dart	(date 1617958113337)
+@@ -0,0 +1,21 @@
++import 'dart:ui';
++
++import 'package:my_porto/ui/box_game.dart';
++
++class MainChar {
++  final BoxGame game;
++  Paint flyPaint;
++  Rect flyRect;
++
++  MainChar(this.game, double x, double y) {
++    flyRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
++    flyPaint = Paint();
++    flyPaint.color = Color(0xff6ab04c);
++  }
++
++  void render(Canvas c) {
++    c.drawRect(flyRect, flyPaint);
++  }
++
++  void update(double t) {}
++}
+Index: day_night_animation/ios/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/.gitignore	(date 1617958113831)
++++ day_night_animation/ios/.gitignore	(date 1617958113831)
+@@ -0,0 +1,32 @@
++*.mode1v3
++*.mode2v3
++*.moved-aside
++*.pbxuser
++*.perspectivev3
++**/*sync/
++.sconsign.dblite
++.tags*
++**/.vagrant/
++**/DerivedData/
++Icon?
++**/Pods/
++**/.symlinks/
++profile
++xcuserdata
++**/.generated/
++Flutter/App.framework
++Flutter/Flutter.framework
++Flutter/Flutter.podspec
++Flutter/Generated.xcconfig
++Flutter/app.flx
++Flutter/app.zip
++Flutter/flutter_assets/
++Flutter/flutter_export_environment.sh
++ServiceDefinitions.json
++Runner/GeneratedPluginRegistrant.*
++
++# Exceptions to above rules.
++!default.mode1v3
++!default.mode2v3
++!default.pbxuser
++!default.perspectivev3
+Index: .idea/libraries/Dart_Packages.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\r\n  <library name=\"Dart Packages\" type=\"DartPackagesLibraryType\">\r\n    <properties>\r\n      <option name=\"packageNameToDirsMap\">\r\n        <entry key=\"animated_text_kit\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.0.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"async\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.5.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"boolean_selector\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"characters\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"charcode\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.2.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"clock\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"collection\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"cupertino_icons\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"fake_async\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"flutter\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/packages/flutter/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"flutter_test\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/packages/flutter_test/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"get\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-3.26.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"matcher\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"meta\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"path\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"sky_engine\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/bin/cache/pkg/sky_engine/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"source_span\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"stack_trace\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"stream_channel\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"string_scanner\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"term_glyph\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"test_api\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"typed_data\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"vector_math\">\r\n          <value>\r\n            <list>\r\n              <option value=\"C:/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0/lib\" />\r\n            </list>\r\n          </value>\r\n        </entry>\r\n      </option>\r\n    </properties>\r\n    <CLASSES>\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.0.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.5.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.2.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-3.26.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/lib\" />\r\n      <root url=\"file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0/lib\" />\r\n      <root url=\"file://C:/flutter/bin/cache/pkg/sky_engine/lib\" />\r\n      <root url=\"file://C:/flutter/packages/flutter/lib\" />\r\n      <root url=\"file://C:/flutter/packages/flutter_test/lib\" />\r\n    </CLASSES>\r\n    <JAVADOC />\r\n    <SOURCES />\r\n  </library>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/Dart_Packages.xml	(revision 636573933bfba61b5570bcf6c0a9fa9e3e1189e3)
++++ .idea/libraries/Dart_Packages.xml	(date 1617958116653)
+@@ -5,7 +5,15 @@
+         <entry key="animated_text_kit">
+           <value>
+             <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.1.1/lib" />
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="archive">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -16,6 +24,13 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="audioplayers">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.18.3/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="boolean_selector">
+           <value>
+             <list>
+@@ -23,6 +38,27 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="box2d_flame">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/box2d_flame-0.4.6/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="cached_network_image">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-3.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="carousel_slider">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/carousel_slider-3.0.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="characters">
+           <value>
+             <list>
+@@ -34,6 +70,13 @@
+           <value>
+             <list>
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.2.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="circular_reveal_animation">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/circular_reveal_animation-2.0.0/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -51,6 +94,21 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="convert">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="crypto">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/lib" />
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="cupertino_icons">
+           <value>
+             <list>
+@@ -62,6 +120,41 @@
+           <value>
+             <list>
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="ffi">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="file">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flame">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/flame-0.29.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flare_dart">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/flare_dart-2.3.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flare_flutter">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/flare_flutter-2.0.6/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -72,6 +165,34 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="flutter_blurhash">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_blurhash-0.6.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flutter_cache_manager">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_cache_manager-3.0.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flutter_localizations">
++          <value>
++            <list>
++              <option value="C:/flutter/packages/flutter_localizations/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="flutter_svg">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.19.3/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="flutter_test">
+           <value>
+             <list>
+@@ -79,17 +200,82 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="flutter_web_plugins">
++          <value>
++            <list>
++              <option value="C:/flutter/packages/flutter_web_plugins/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="get">
+           <value>
+             <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.1.1/lib" />
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.1.3/lib" />
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-3.26.0/lib" />
+             </list>
+           </value>
+         </entry>
++        <entry key="http">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="http_parser">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="image">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/image-3.0.2/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="intl">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="js">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="logging">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/logging-1.0.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="lottie">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/lottie-1.0.1/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="matcher">
+           <value>
+             <list>
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="material_dialogs">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/material_dialogs-1.0.0/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -97,6 +283,27 @@
+           <value>
+             <list>
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="nested">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="octo_image">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/octo_image-1.0.0+1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="ordered_set">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/ordered_set-2.0.2/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -107,10 +314,165 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="path_drawing">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1+1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="path_parsing">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="path_provider">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="path_provider_linux">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="path_provider_macos">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="path_provider_platform_interface">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_platform_interface-2.0.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="path_provider_windows">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="pedantic">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.11.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="petitparser">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-4.0.2/lib" />
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-3.1.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="platform">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="plugin_platform_interface">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="process">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.1/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="provider">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-5.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="rating_bar">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/rating_bar-0.2.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="rxdart">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.26.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.5/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_linux">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_macos">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_platform_interface">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_platform_interface-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_web">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="shared_preferences_windows">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-2.0.0/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="sky_engine">
+           <value>
+             <list>
+               <option value="C:/flutter/bin/cache/pkg/sky_engine/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="smooth_page_indicator">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/smooth_page_indicator-0.2.3/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -118,6 +480,20 @@
+           <value>
+             <list>
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="sqflite">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.0+3/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="sqflite_common">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-2.0.0+2/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -142,6 +518,14 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="synchronized">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-3.0.0/lib" />
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0+2/lib" />
++            </list>
++          </value>
++        </entry>
+         <entry key="term_glyph">
+           <value>
+             <list>
+@@ -160,6 +544,13 @@
+           <value>
+             <list>
+               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="uuid">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.3/lib" />
+             </list>
+           </value>
+         </entry>
+@@ -170,33 +561,120 @@
+             </list>
+           </value>
+         </entry>
++        <entry key="win32">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.0.5/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="xdg_directories">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.2.0/lib" />
++            </list>
++          </value>
++        </entry>
++        <entry key="xml">
++          <value>
++            <list>
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.0.2/lib" />
++              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/xml-4.5.1/lib" />
++            </list>
++          </value>
++        </entry>
+       </option>
+     </properties>
+     <CLASSES>
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.1.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.1.2/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.5.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.18.3/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/box2d_flame-0.4.6/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image-3.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/carousel_slider-3.0.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.2.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/circular_reveal_animation-2.0.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/flame-0.29.4/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/flare_dart-2.3.4/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/flare_flutter-2.0.6/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_blurhash-0.6.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_cache_manager-3.0.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.19.3/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-3.26.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.1.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.1.3/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/image-3.0.2/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/logging-1.0.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/lottie-1.0.1/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/material_dialogs-1.0.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.3.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/octo_image-1.0.0+1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/ordered_set-2.0.2/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.4.1+1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.1.4/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_platform_interface-2.0.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.11.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-3.1.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-4.0.2/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-5.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/rating_bar-0.2.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.26.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.5/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_platform_interface-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-2.0.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/smooth_page_indicator-0.2.3/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.0+3/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-2.0.0+2/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0+2/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-3.0.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.3.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.3/lib" />
+       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.0.5/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.2.0/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/xml-4.5.1/lib" />
++      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.0.2/lib" />
+       <root url="file://C:/flutter/bin/cache/pkg/sky_engine/lib" />
+       <root url="file://C:/flutter/packages/flutter/lib" />
++      <root url="file://C:/flutter/packages/flutter_localizations/lib" />
+       <root url="file://C:/flutter/packages/flutter_test/lib" />
++      <root url="file://C:/flutter/packages/flutter_web_plugins/lib" />
+     </CLASSES>
+     <JAVADOC />
+     <SOURCES />
+Index: day_night_animation/ios/Flutter/AppFrameworkInfo.plist
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Flutter/AppFrameworkInfo.plist	(date 1617958113955)
++++ day_night_animation/ios/Flutter/AppFrameworkInfo.plist	(date 1617958113955)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++  <key>CFBundleDevelopmentRegion</key>
++  <string>en</string>
++  <key>CFBundleExecutable</key>
++  <string>App</string>
++  <key>CFBundleIdentifier</key>
++  <string>io.flutter.flutter.app</string>
++  <key>CFBundleInfoDictionaryVersion</key>
++  <string>6.0</string>
++  <key>CFBundleName</key>
++  <string>App</string>
++  <key>CFBundlePackageType</key>
++  <string>FMWK</string>
++  <key>CFBundleShortVersionString</key>
++  <string>1.0</string>
++  <key>CFBundleSignature</key>
++  <string>????</string>
++  <key>CFBundleVersion</key>
++  <string>1.0</string>
++  <key>MinimumOSVersion</key>
++  <string>8.0</string>
++</dict>
++</plist>
+Index: day_night_animation/ios/Runner/Runner-Bridging-Header.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner/Runner-Bridging-Header.h	(date 1617958113941)
++++ day_night_animation/ios/Runner/Runner-Bridging-Header.h	(date 1617958113941)
+@@ -0,0 +1,1 @@
++#import "GeneratedPluginRegistrant.h"
+Index: day_night_animation/ios/Runner/AppDelegate.swift
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner/AppDelegate.swift	(date 1617958113886)
++++ day_night_animation/ios/Runner/AppDelegate.swift	(date 1617958113886)
+@@ -0,0 +1,13 @@
++import UIKit
++import Flutter
++
++@UIApplicationMain
++@objc class AppDelegate: FlutterAppDelegate {
++  override func application(
++    _ application: UIApplication,
++    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
++  ) -> Bool {
++    GeneratedPluginRegistrant.register(with: self)
++    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
++  }
++}
+Index: day_night_animation/ios/Runner.xcodeproj/project.pbxproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcodeproj/project.pbxproj	(date 1617958114046)
++++ day_night_animation/ios/Runner.xcodeproj/project.pbxproj	(date 1617958114046)
+@@ -0,0 +1,471 @@
++// !$*UTF8*$!
++{
++	archiveVersion = 1;
++	classes = {
++	};
++	objectVersion = 46;
++	objects = {
++
++/* Begin PBXBuildFile section */
++		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
++		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
++		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
++		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
++		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
++		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
++/* End PBXBuildFile section */
++
++/* Begin PBXCopyFilesBuildPhase section */
++		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
++			isa = PBXCopyFilesBuildPhase;
++			buildActionMask = 2147483647;
++			dstPath = "";
++			dstSubfolderSpec = 10;
++			files = (
++			);
++			name = "Embed Frameworks";
++			runOnlyForDeploymentPostprocessing = 0;
++		};
++/* End PBXCopyFilesBuildPhase section */
++
++/* Begin PBXFileReference section */
++		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
++		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
++		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
++		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
++		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
++		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
++		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
++		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
++		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
++		97C146FB1CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
++		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
++		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
++		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
++/* End PBXFileReference section */
++
++/* Begin PBXFrameworksBuildPhase section */
++		97C146EB1CF9000F007C117D /* Frameworks */ = {
++			isa = PBXFrameworksBuildPhase;
++			buildActionMask = 2147483647;
++			files = (
++			);
++			runOnlyForDeploymentPostprocessing = 0;
++		};
++/* End PBXFrameworksBuildPhase section */
++
++/* Begin PBXGroup section */
++		9740EEB11CF90186004384FC /* Flutter */ = {
++			isa = PBXGroup;
++			children = (
++				3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */,
++				9740EEB21CF90195004384FC /* Debug.xcconfig */,
++				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
++				9740EEB31CF90195004384FC /* Generated.xcconfig */,
++			);
++			name = Flutter;
++			sourceTree = "<group>";
++		};
++		97C146E51CF9000F007C117D = {
++			isa = PBXGroup;
++			children = (
++				9740EEB11CF90186004384FC /* Flutter */,
++				97C146F01CF9000F007C117D /* Runner */,
++				97C146EF1CF9000F007C117D /* Products */,
++			);
++			sourceTree = "<group>";
++		};
++		97C146EF1CF9000F007C117D /* Products */ = {
++			isa = PBXGroup;
++			children = (
++				97C146EE1CF9000F007C117D /* Runner.app */,
++			);
++			name = Products;
++			sourceTree = "<group>";
++		};
++		97C146F01CF9000F007C117D /* Runner */ = {
++			isa = PBXGroup;
++			children = (
++				97C146FA1CF9000F007C117D /* Main.storyboard */,
++				97C146FD1CF9000F007C117D /* Assets.xcassets */,
++				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
++				97C147021CF9000F007C117D /* Info.plist */,
++				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
++				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
++				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
++				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
++			);
++			path = Runner;
++			sourceTree = "<group>";
++		};
++/* End PBXGroup section */
++
++/* Begin PBXNativeTarget section */
++		97C146ED1CF9000F007C117D /* Runner */ = {
++			isa = PBXNativeTarget;
++			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
++			buildPhases = (
++				9740EEB61CF901F6004384FC /* Run Script */,
++				97C146EA1CF9000F007C117D /* Sources */,
++				97C146EB1CF9000F007C117D /* Frameworks */,
++				97C146EC1CF9000F007C117D /* Resources */,
++				9705A1C41CF9048500538489 /* Embed Frameworks */,
++				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
++			);
++			buildRules = (
++			);
++			dependencies = (
++			);
++			name = Runner;
++			productName = Runner;
++			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
++			productType = "com.apple.product-type.application";
++		};
++/* End PBXNativeTarget section */
++
++/* Begin PBXProject section */
++		97C146E61CF9000F007C117D /* Project object */ = {
++			isa = PBXProject;
++			attributes = {
++				LastUpgradeCheck = 1020;
++				ORGANIZATIONNAME = "";
++				TargetAttributes = {
++					97C146ED1CF9000F007C117D = {
++						CreatedOnToolsVersion = 7.3.1;
++						LastSwiftMigration = 1100;
++					};
++				};
++			};
++			buildConfigurationList = 97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */;
++			compatibilityVersion = "Xcode 9.3";
++			developmentRegion = en;
++			hasScannedForEncodings = 0;
++			knownRegions = (
++				en,
++				Base,
++			);
++			mainGroup = 97C146E51CF9000F007C117D;
++			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
++			projectDirPath = "";
++			projectRoot = "";
++			targets = (
++				97C146ED1CF9000F007C117D /* Runner */,
++			);
++		};
++/* End PBXProject section */
++
++/* Begin PBXResourcesBuildPhase section */
++		97C146EC1CF9000F007C117D /* Resources */ = {
++			isa = PBXResourcesBuildPhase;
++			buildActionMask = 2147483647;
++			files = (
++				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
++				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
++				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
++				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
++			);
++			runOnlyForDeploymentPostprocessing = 0;
++		};
++/* End PBXResourcesBuildPhase section */
++
++/* Begin PBXShellScriptBuildPhase section */
++		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
++			isa = PBXShellScriptBuildPhase;
++			buildActionMask = 2147483647;
++			files = (
++			);
++			inputPaths = (
++			);
++			name = "Thin Binary";
++			outputPaths = (
++			);
++			runOnlyForDeploymentPostprocessing = 0;
++			shellPath = /bin/sh;
++			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
++		};
++		9740EEB61CF901F6004384FC /* Run Script */ = {
++			isa = PBXShellScriptBuildPhase;
++			buildActionMask = 2147483647;
++			files = (
++			);
++			inputPaths = (
++			);
++			name = "Run Script";
++			outputPaths = (
++			);
++			runOnlyForDeploymentPostprocessing = 0;
++			shellPath = /bin/sh;
++			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
++		};
++/* End PBXShellScriptBuildPhase section */
++
++/* Begin PBXSourcesBuildPhase section */
++		97C146EA1CF9000F007C117D /* Sources */ = {
++			isa = PBXSourcesBuildPhase;
++			buildActionMask = 2147483647;
++			files = (
++				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
++				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
++			);
++			runOnlyForDeploymentPostprocessing = 0;
++		};
++/* End PBXSourcesBuildPhase section */
++
++/* Begin PBXVariantGroup section */
++		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
++			isa = PBXVariantGroup;
++			children = (
++				97C146FB1CF9000F007C117D /* Base */,
++			);
++			name = Main.storyboard;
++			sourceTree = "<group>";
++		};
++		97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */ = {
++			isa = PBXVariantGroup;
++			children = (
++				97C147001CF9000F007C117D /* Base */,
++			);
++			name = LaunchScreen.storyboard;
++			sourceTree = "<group>";
++		};
++/* End PBXVariantGroup section */
++
++/* Begin XCBuildConfiguration section */
++		249021D3217E4FDB00AE95B9 /* Profile */ = {
++			isa = XCBuildConfiguration;
++			buildSettings = {
++				ALWAYS_SEARCH_USER_PATHS = NO;
++				CLANG_ANALYZER_NONNULL = YES;
++				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
++				CLANG_CXX_LIBRARY = "libc++";
++				CLANG_ENABLE_MODULES = YES;
++				CLANG_ENABLE_OBJC_ARC = YES;
++				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
++				CLANG_WARN_BOOL_CONVERSION = YES;
++				CLANG_WARN_COMMA = YES;
++				CLANG_WARN_CONSTANT_CONVERSION = YES;
++				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
++				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
++				CLANG_WARN_EMPTY_BODY = YES;
++				CLANG_WARN_ENUM_CONVERSION = YES;
++				CLANG_WARN_INFINITE_RECURSION = YES;
++				CLANG_WARN_INT_CONVERSION = YES;
++				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
++				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
++				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
++				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
++				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
++				CLANG_WARN_STRICT_PROTOTYPES = YES;
++				CLANG_WARN_SUSPICIOUS_MOVE = YES;
++				CLANG_WARN_UNREACHABLE_CODE = YES;
++				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
++				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
++				COPY_PHASE_STRIP = NO;
++				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
++				ENABLE_NS_ASSERTIONS = NO;
++				ENABLE_STRICT_OBJC_MSGSEND = YES;
++				GCC_C_LANGUAGE_STANDARD = gnu99;
++				GCC_NO_COMMON_BLOCKS = YES;
++				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
++				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
++				GCC_WARN_UNDECLARED_SELECTOR = YES;
++				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
++				GCC_WARN_UNUSED_FUNCTION = YES;
++				GCC_WARN_UNUSED_VARIABLE = YES;
++				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
++				MTL_ENABLE_DEBUG_INFO = NO;
++				SDKROOT = iphoneos;
++				SUPPORTED_PLATFORMS = iphoneos;
++				TARGETED_DEVICE_FAMILY = "1,2";
++				VALIDATE_PRODUCT = YES;
++			};
++			name = Profile;
++		};
++		249021D4217E4FDB00AE95B9 /* Profile */ = {
++			isa = XCBuildConfiguration;
++			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
++			buildSettings = {
++				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
++				CLANG_ENABLE_MODULES = YES;
++				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
++				ENABLE_BITCODE = NO;
++				INFOPLIST_FILE = Runner/Info.plist;
++				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
++				PRODUCT_BUNDLE_IDENTIFIER = com.ezaldeen.dayNightAnimation;
++				PRODUCT_NAME = "$(TARGET_NAME)";
++				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
++				SWIFT_VERSION = 5.0;
++				VERSIONING_SYSTEM = "apple-generic";
++			};
++			name = Profile;
++		};
++		97C147031CF9000F007C117D /* Debug */ = {
++			isa = XCBuildConfiguration;
++			buildSettings = {
++				ALWAYS_SEARCH_USER_PATHS = NO;
++				CLANG_ANALYZER_NONNULL = YES;
++				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
++				CLANG_CXX_LIBRARY = "libc++";
++				CLANG_ENABLE_MODULES = YES;
++				CLANG_ENABLE_OBJC_ARC = YES;
++				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
++				CLANG_WARN_BOOL_CONVERSION = YES;
++				CLANG_WARN_COMMA = YES;
++				CLANG_WARN_CONSTANT_CONVERSION = YES;
++				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
++				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
++				CLANG_WARN_EMPTY_BODY = YES;
++				CLANG_WARN_ENUM_CONVERSION = YES;
++				CLANG_WARN_INFINITE_RECURSION = YES;
++				CLANG_WARN_INT_CONVERSION = YES;
++				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
++				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
++				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
++				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
++				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
++				CLANG_WARN_STRICT_PROTOTYPES = YES;
++				CLANG_WARN_SUSPICIOUS_MOVE = YES;
++				CLANG_WARN_UNREACHABLE_CODE = YES;
++				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
++				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
++				COPY_PHASE_STRIP = NO;
++				DEBUG_INFORMATION_FORMAT = dwarf;
++				ENABLE_STRICT_OBJC_MSGSEND = YES;
++				ENABLE_TESTABILITY = YES;
++				GCC_C_LANGUAGE_STANDARD = gnu99;
++				GCC_DYNAMIC_NO_PIC = NO;
++				GCC_NO_COMMON_BLOCKS = YES;
++				GCC_OPTIMIZATION_LEVEL = 0;
++				GCC_PREPROCESSOR_DEFINITIONS = (
++					"DEBUG=1",
++					"$(inherited)",
++				);
++				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
++				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
++				GCC_WARN_UNDECLARED_SELECTOR = YES;
++				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
++				GCC_WARN_UNUSED_FUNCTION = YES;
++				GCC_WARN_UNUSED_VARIABLE = YES;
++				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
++				MTL_ENABLE_DEBUG_INFO = YES;
++				ONLY_ACTIVE_ARCH = YES;
++				SDKROOT = iphoneos;
++				TARGETED_DEVICE_FAMILY = "1,2";
++			};
++			name = Debug;
++		};
++		97C147041CF9000F007C117D /* Release */ = {
++			isa = XCBuildConfiguration;
++			buildSettings = {
++				ALWAYS_SEARCH_USER_PATHS = NO;
++				CLANG_ANALYZER_NONNULL = YES;
++				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
++				CLANG_CXX_LIBRARY = "libc++";
++				CLANG_ENABLE_MODULES = YES;
++				CLANG_ENABLE_OBJC_ARC = YES;
++				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
++				CLANG_WARN_BOOL_CONVERSION = YES;
++				CLANG_WARN_COMMA = YES;
++				CLANG_WARN_CONSTANT_CONVERSION = YES;
++				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
++				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
++				CLANG_WARN_EMPTY_BODY = YES;
++				CLANG_WARN_ENUM_CONVERSION = YES;
++				CLANG_WARN_INFINITE_RECURSION = YES;
++				CLANG_WARN_INT_CONVERSION = YES;
++				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
++				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
++				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
++				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
++				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
++				CLANG_WARN_STRICT_PROTOTYPES = YES;
++				CLANG_WARN_SUSPICIOUS_MOVE = YES;
++				CLANG_WARN_UNREACHABLE_CODE = YES;
++				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
++				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
++				COPY_PHASE_STRIP = NO;
++				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
++				ENABLE_NS_ASSERTIONS = NO;
++				ENABLE_STRICT_OBJC_MSGSEND = YES;
++				GCC_C_LANGUAGE_STANDARD = gnu99;
++				GCC_NO_COMMON_BLOCKS = YES;
++				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
++				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
++				GCC_WARN_UNDECLARED_SELECTOR = YES;
++				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
++				GCC_WARN_UNUSED_FUNCTION = YES;
++				GCC_WARN_UNUSED_VARIABLE = YES;
++				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
++				MTL_ENABLE_DEBUG_INFO = NO;
++				SDKROOT = iphoneos;
++				SUPPORTED_PLATFORMS = iphoneos;
++				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
++				TARGETED_DEVICE_FAMILY = "1,2";
++				VALIDATE_PRODUCT = YES;
++			};
++			name = Release;
++		};
++		97C147061CF9000F007C117D /* Debug */ = {
++			isa = XCBuildConfiguration;
++			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
++			buildSettings = {
++				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
++				CLANG_ENABLE_MODULES = YES;
++				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
++				ENABLE_BITCODE = NO;
++				INFOPLIST_FILE = Runner/Info.plist;
++				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
++				PRODUCT_BUNDLE_IDENTIFIER = com.ezaldeen.dayNightAnimation;
++				PRODUCT_NAME = "$(TARGET_NAME)";
++				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
++				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
++				SWIFT_VERSION = 5.0;
++				VERSIONING_SYSTEM = "apple-generic";
++			};
++			name = Debug;
++		};
++		97C147071CF9000F007C117D /* Release */ = {
++			isa = XCBuildConfiguration;
++			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
++			buildSettings = {
++				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
++				CLANG_ENABLE_MODULES = YES;
++				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
++				ENABLE_BITCODE = NO;
++				INFOPLIST_FILE = Runner/Info.plist;
++				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
++				PRODUCT_BUNDLE_IDENTIFIER = com.ezaldeen.dayNightAnimation;
++				PRODUCT_NAME = "$(TARGET_NAME)";
++				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
++				SWIFT_VERSION = 5.0;
++				VERSIONING_SYSTEM = "apple-generic";
++			};
++			name = Release;
++		};
++/* End XCBuildConfiguration section */
++
++/* Begin XCConfigurationList section */
++		97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */ = {
++			isa = XCConfigurationList;
++			buildConfigurations = (
++				97C147031CF9000F007C117D /* Debug */,
++				97C147041CF9000F007C117D /* Release */,
++				249021D3217E4FDB00AE95B9 /* Profile */,
++			);
++			defaultConfigurationIsVisible = 0;
++			defaultConfigurationName = Release;
++		};
++		97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */ = {
++			isa = XCConfigurationList;
++			buildConfigurations = (
++				97C147061CF9000F007C117D /* Debug */,
++				97C147071CF9000F007C117D /* Release */,
++				249021D4217E4FDB00AE95B9 /* Profile */,
++			);
++			defaultConfigurationIsVisible = 0;
++			defaultConfigurationName = Release;
++		};
++/* End XCConfigurationList section */
++	};
++	rootObject = 97C146E61CF9000F007C117D /* Project object */;
++}
+Index: day_night_animation/android/app/src/main/res/drawable-v21/launch_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/android/app/src/main/res/drawable-v21/launch_background.xml	(date 1617958113497)
++++ day_night_animation/android/app/src/main/res/drawable-v21/launch_background.xml	(date 1617958113497)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Modify this file to customize your launch splash screen -->
++<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
++    <item android:drawable="?android:colorBackground" />
++
++    <!-- You can insert your own image assets here -->
++    <!-- <item>
++        <bitmap
++            android:gravity="center"
++            android:src="@mipmap/launch_image" />
++    </item> -->
++</layer-list>
+Index: day_night_animation/ios/Flutter/Release.xcconfig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Flutter/Release.xcconfig	(date 1617958114036)
++++ day_night_animation/ios/Flutter/Release.xcconfig	(date 1617958114036)
+@@ -0,0 +1,1 @@
++#include "Generated.xcconfig"
+Index: day_night_animation/ios/Flutter/Debug.xcconfig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Flutter/Debug.xcconfig	(date 1617958114004)
++++ day_night_animation/ios/Flutter/Debug.xcconfig	(date 1617958114004)
+@@ -0,0 +1,1 @@
++#include "Generated.xcconfig"
+Index: day_night_animation/ios/Runner/Base.lproj/LaunchScreen.storyboard
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner/Base.lproj/LaunchScreen.storyboard	(date 1617958114141)
++++ day_night_animation/ios/Runner/Base.lproj/LaunchScreen.storyboard	(date 1617958114141)
+@@ -0,0 +1,37 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
++    <dependencies>
++        <deployment identifier="iOS"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
++    </dependencies>
++    <scenes>
++        <!--View Controller-->
++        <scene sceneID="EHf-IW-A2E">
++            <objects>
++                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
++                    <layoutGuides>
++                        <viewControllerLayoutGuide type="top" id="Ydg-fD-yQy"/>
++                        <viewControllerLayoutGuide type="bottom" id="xbc-2k-c8Z"/>
++                    </layoutGuides>
++                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
++                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                        <subviews>
++                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
++                            </imageView>
++                        </subviews>
++                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
++                        <constraints>
++                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1a2-6s-vTC"/>
++                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4X2-HB-R7a"/>
++                        </constraints>
++                    </view>
++                </viewController>
++                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
++            </objects>
++            <point key="canvasLocation" x="53" y="375"/>
++        </scene>
++    </scenes>
++    <resources>
++        <image name="LaunchImage" width="168" height="185"/>
++    </resources>
++</document>
+Index: day_night_animation/ios/Runner.xcworkspace/contents.xcworkspacedata
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcworkspace/contents.xcworkspacedata	(date 1617958114130)
++++ day_night_animation/ios/Runner.xcworkspace/contents.xcworkspacedata	(date 1617958114130)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<Workspace
++   version = "1.0">
++   <FileRef
++      location = "group:Runner.xcodeproj">
++   </FileRef>
++</Workspace>
+Index: day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata	(date 1617958114580)
++++ day_night_animation/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata	(date 1617958114580)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<Workspace
++   version = "1.0">
++   <FileRef
++      location = "self:">
++   </FileRef>
++</Workspace>
+Index: day_night_animation/ios/Runner/Base.lproj/Main.storyboard
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner/Base.lproj/Main.storyboard	(date 1617958114520)
++++ day_night_animation/ios/Runner/Base.lproj/Main.storyboard	(date 1617958114520)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
++    <dependencies>
++        <deployment identifier="iOS"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
++    </dependencies>
++    <scenes>
++        <!--Flutter View Controller-->
++        <scene sceneID="tne-QT-ifu">
++            <objects>
++                <viewController id="BYZ-38-t0r" customClass="FlutterViewController" sceneMemberID="viewController">
++                    <layoutGuides>
++                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
++                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
++                    </layoutGuides>
++                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
++                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
++                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
++                    </view>
++                </viewController>
++                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
++            </objects>
++        </scene>
++    </scenes>
++</document>
+Index: day_night_animation/lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/main.dart	(date 1617958114508)
++++ day_night_animation/lib/main.dart	(date 1617958114508)
+@@ -0,0 +1,23 @@
++import 'package:day_night_animation/styles.dart';
++import 'package:day_night_animation/widget/path.dart';
++import 'package:flutter/material.dart';
++
++void main() {
++  WidgetsFlutterBinding.ensureInitialized();
++  runApp(new MyApp());
++}
++
++class MyApp extends StatelessWidget {
++  @override
++  Widget build(BuildContext context) {
++    return MaterialApp(
++      debugShowCheckedModeBanner: false,
++      title: 'BMI Calculator',
++      theme: ThemeData(
++        primaryColor: mainBlue,
++        fontFamily: 'SF Pro Display',
++      ),
++      home: SampleAnimation(),
++    );
++  }
++}
+Index: day_night_animation/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings	(date 1617958114997)
++++ day_night_animation/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings	(date 1617958114997)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>PreviewsEnabled</key>
++	<false/>
++</dict>
++</plist>
+Index: day_night_animation/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist	(date 1617958114945)
++++ day_night_animation/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist	(date 1617958114945)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>IDEDidComputeMac32BitWarning</key>
++	<true/>
++</dict>
++</plist>
+Index: day_night_animation/lib/widget/path.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- day_night_animation/lib/widget/path.dart	(date 1617958114909)
++++ day_night_animation/lib/widget/path.dart	(date 1617958114909)
+@@ -0,0 +1,126 @@
++import 'dart:ui';
++
++import 'package:flutter/cupertino.dart';
++import 'package:flutter/material.dart';
++
++class SampleAnimation extends StatefulWidget {
++  SampleAnimation();
++
++  @override
++  State<StatefulWidget> createState() {
++    return SampleAnimationState();
++  }
++}
++
++class SampleAnimationState extends State<SampleAnimation>
++    with SingleTickerProviderStateMixin {
++  AnimationController _controller;
++  Animation _animation;
++  Path _path;
++  double height = 150;
++  double width;
++  double margin = 30;
++
++  @override
++  void initState() {
++    _controller = AnimationController(
++        vsync: this, duration: Duration(milliseconds: 2000));
++    _animation = Tween(begin: 0.0, end: 1.0)
++        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn))
++          ..addListener(() {
++            setState(() {});
++          });
++    width = 370;
++    super.initState();
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    GlobalKey key = GlobalKey();
++    GlobalKey key1 = GlobalKey();
++
++    return Scaffold(
++      body: Container(
++        height: height,
++        child: Stack(
++          children: <Widget>[
++            Positioned(
++              top: calculate(_animation.value).dy,
++              left: calculate(_animation.value).dx,
++              child: Container(
++                decoration: BoxDecoration(
++                    color: Colors.blueAccent,
++                    borderRadius: BorderRadius.circular(10)),
++                width: 10,
++                height: 10,
++              ),
++            ),
++            Positioned(
++              key: key,
++              bottom: 0,
++              left: margin,
++              child: CupertinoButton(
++                  child: Text("add"),
++                  onPressed: () {
++                    drawPath(key1);
++                    _controller.reset();
++                    _controller.forward();
++                  }),
++            ),
++            Positioned(
++              key: key1,
++              bottom: margin / 2.5,
++              right: margin,
++              child: Icon(Icons.shopping_cart),
++            ),
++          ],
++        ),
++      ),
++    );
++  }
++
++  @override
++  void dispose() {
++    _controller.dispose();
++    super.dispose();
++  }
++
++  Path drawPath(GlobalKey<State<StatefulWidget>> key1) {
++    Size size = Size(width, 230);
++    Path path = Path();
++    path.moveTo(margin + 30, height - 50);
++    path.quadraticBezierTo(
++        size.width / 2, 0, getPositionbyKey(key1).x, size.height / 2);
++    return path;
++  }
++
++  Offset calculate(value) {
++    try {
++      PathMetrics pathMetrics = _path.computeMetrics();
++      PathMetric pathMetric = pathMetrics.elementAt(0);
++      value = pathMetric.length * value;
++      Tangent pos = pathMetric.getTangentForOffset(value);
++      return pos.position;
++    } catch (ex) {
++      return Offset(margin + 30, height - 50);
++    }
++  }
++}
++
++Position getPositionbyKey(GlobalKey key) {
++  RenderBox box = key.currentContext.findRenderObject();
++  Size size = box.size;
++  Offset position = box.localToGlobal(Offset.zero); //this is global position
++  double x = position.dx;
++  double y = position.dy;
++  return Position(x, y, size);
++}
++
++class Position {
++  double x;
++
++  double y;
++  Size size;
++
++  Position(this.x, this.y, this.size);
++}
+diff --git day_night_animation/ios/Runner/Info.plist day_night_animation/ios/Runner/Info.plist
+new file mode 100644
