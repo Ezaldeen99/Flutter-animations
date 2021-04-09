@@ -1,6 +1,6 @@
 
 <br />
-<p align="center"><img src="" width="440px"/></p>
+<p align="center"><img src="assets\sceen.jpg" width="440px"/></p>
 <br />
 
 ### Flutter Animations
@@ -15,7 +15,7 @@ In addition to forking and reviewing the [MIT licensed code](LICENSE.md) availab
 
 ### About me
 
-I am a mobile developer from Iraq, this repo is just to share source code for my [Instagram page]()
+I am a mobile developer from Iraq, this repo is just to share source code for my [Instagram page](https://www.instagram.com/ezaldeen_sahb/)
 
 <br/>
 
