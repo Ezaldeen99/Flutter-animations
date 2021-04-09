@@ -1,12 +1,12 @@
 
 <br />
-<p align="center"><img src="assets\sceen.jpg" width="440px"/></p>
+<p align="center"><img src="assets\sceen.jpg" width="550px"/></p>
 <br />
 
 ### Flutter Animations
 
-A collection of explorations into the exciting user experience possibilities enabled by the Flutter platform.
-Built by [me](https://ezaldeensahb.link)
+A collection of Animations that aims to improve the user experience for your next flutter project.
+Built by [Ezaldeen SAHB](https://ezaldeensahb.link)
 I hope that these sample can help you in your real projects or just for the purpose of learning and inspiration.
 
 In addition to forking and reviewing the [MIT licensed code](LICENSE.md) available here.
@@ -15,7 +15,7 @@ In addition to forking and reviewing the [MIT licensed code](LICENSE.md) availab
 
 ### About me
 
-I am a mobile developer from Iraq, this repo is just to share source code for my [Instagram page](https://www.instagram.com/ezaldeen_sahb/)
+I am a mobile developer from Iraq, this repo is just to share source code for my [Instagram page @ezaldeen_sahb](https://www.instagram.com/ezaldeen_sahb/) Videos. 
 
 <br/>
 
