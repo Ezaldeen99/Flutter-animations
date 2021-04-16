@@ -62,6 +62,13 @@ I am a mobile developer from Iraq, this repo is just to share source code for my
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
+<a href="https://github.com/Ezaldeen99/Flutter-animations/tree/main/flutter_hero"><img align="left" hspace=68 src="https://github.com/Ezaldeen99/Flutter-animations/blob/main/assets/hero_animations.gif" width="200" /></a>
+<a href="https://github.com/Ezaldeen99/Flutter-animations/tree/main/flutter_hero"><h3>Flutter custom hero animations</h3></a>
+<p>Flutter Hero Animations are amazing, however, the default hero animation is not giving the best U/X.
+   We will implement a white page route animations to improve this issue
+</p>
+<a href="https://github.com/Ezaldeen99/Flutter-animations/tree/main/flutter_hero">View Code</a>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 <br/>
 
